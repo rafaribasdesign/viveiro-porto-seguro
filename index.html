@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Viveiro Porto Seguro — Raíz, Copa e Fruto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=quincy-cf@500,700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:  #3E4827;
+      --rust:   #9D4815;
+      --brown:  #392C23;
+      --amber:  #D99C48;
+      --cream:  #EDEBDC;
+      --cream2: #F5F3EA;
+
+      --font-head: 'Quincy CF', 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+
+      --max: 1280px;
+      --gap: clamp(1.5rem, 4vw, 3rem);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--cream);
+      color: var(--brown);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── HEADER ─────────────────────────────────────────── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem clamp(1.5rem, 5vw, 4rem);
+      background: #9f4913;
+      border-bottom: 1px solid rgba(0,0,0,.15);
+      transition: box-shadow .3s;
+    }
+    header.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,.22); }
+
+    .logo img {
+      height: 44px;
+      display: block;
+    }
+
+    nav {
+      display: flex;
+      gap: 2.4rem;
+      align-items: center;
+    }
+    nav a {
+      font-family: var(--font-body);
+      font-size: .95rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #f5f2e4;
+      text-decoration: none;
+      opacity: .82;
+      transition: opacity .2s;
+    }
+    nav a:hover { opacity: 1; }
+
+    .btn-header {
+      background: #f5f2e4;
+      color: #9f4913 !important;
+      opacity: 1 !important;
+      padding: .55rem 1.5rem;
+      border-radius: 100px;
+      font-size: .95rem;
+    }
+    .btn-header:hover { background: var(--brown); color: #f5f2e4 !important; }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 32px;
+      height: 32px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 101;
+    }
+    .nav-toggle span {
+      display: block;
+      height: 2px;
+      width: 100%;
+      background: #f5f2e4;
+      border-radius: 2px;
+      transition: transform .25s ease, opacity .25s ease;
+    }
+    .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── HERO SLIDER ─────────────────────────────────────── */
+    .hero {
+      margin-top: 70px;
+      padding: 0;
+      position: relative;
+      height: calc(100vh - 70px);
+      min-height: 560px;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity .9s ease;
+      pointer-events: none;
+    }
+    .slide.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .slide-img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: brightness(.68);
+    }
+
+    .slide-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(57,44,35,.7) 0%,
+        rgba(57,44,35,.25) 55%,
+        transparent 100%
+      );
+      display: flex;
+      align-items: flex-end;
+      padding: clamp(2rem, 6vw, 6rem);
+    }
+
+    .hero-text { max-width: 560px; }
+
+    .hero-eyebrow {
+      font-family: var(--font-body);
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1rem;
+    }
+    .hero-title {
+      font-family: var(--font-head);
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 400;
+      line-height: 1.05;
+      color: var(--cream);
+      margin-bottom: 1.6rem;
+    }
+    .hero-title em { font-style: italic; color: var(--amber); }
+
+    .hero-sub {
+      font-size: .9rem;
+      font-weight: 300;
+      color: rgba(237,235,220,.8);
+      letter-spacing: .04em;
+      line-height: 1.75;
+      margin-bottom: 2.2rem;
+    }
+    .btn-hero {
+      display: inline-block;
+      background: var(--amber);
+      color: var(--brown);
+      font-family: var(--font-body);
+      font-size: .95rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .9rem 2.2rem;
+      text-decoration: none;
+      border-radius: 100px;
+      transition: background .2s, transform .2s;
+    }
+    .btn-hero:hover { background: var(--rust); color: var(--cream); transform: translateY(-2px); }
+
+    /* Arrows */
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(237,235,220,.15);
+      border: 1px solid rgba(237,235,220,.25);
+      color: var(--cream);
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .2s;
+      z-index: 10;
+    }
+    .slider-arrow:hover { background: rgba(217,156,72,.5); }
+    .slider-arrow.prev { left: 1.5rem; }
+    .slider-arrow.next { right: 1.5rem; }
+
+    /* Dots */
+    .slider-dots {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: .6rem;
+      z-index: 10;
+    }
+    .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(237,235,220,.35);
+      cursor: pointer;
+      padding: 0;
+      transition: background .3s, transform .3s;
+    }
+    .dot.active {
+      background: var(--amber);
+      transform: scale(1.3);
+    }
+
+    /* ── MANIFESTO STRIP ─────────────────────────────────── */
+    .manifesto {
+      background: var(--brown);
+      padding: 1.4rem clamp(1.5rem, 5vw, 4rem);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      overflow: hidden;
+    }
+    .manifesto-items {
+      display: flex;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .manifesto-item {
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      color: var(--cream);
+      font-size: .78rem;
+      font-weight: 400;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      opacity: .85;
+      white-space: nowrap;
+    }
+    .manifesto-dot {
+      width: 5px; height: 5px;
+      background: var(--amber);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── SECTION BASE ────────────────────────────────────── */
+    section { padding: clamp(4rem, 8vw, 8rem) clamp(1.5rem, 5vw, 4rem); }
+    .container { max-width: var(--max); margin: 0 auto; }
+
+    .section-label {
+      font-family: var(--font-body);
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--rust);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: var(--font-head);
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--brown);
+    }
+    .section-title em { font-style: italic; color: var(--rust); }
+
+    /* ── SOBRE ───────────────────────────────────────────── */
+    .about {
+      background: var(--green);
+    }
+    .about .section-label { color: var(--amber); }
+    .about .section-title { color: var(--cream); }
+    .about .section-title em { color: var(--amber); }
+    .about .about-body p { color: rgba(237,235,220,.75); }
+    .about .about-body p em { color: var(--amber); font-style: italic; }
+    .about .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 6vw, 7rem);
+      align-items: center;
+    }
+    .about-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: rgba(57,44,35,.8);
+      margin-bottom: 1.4rem;
+    }
+    .about-body p:last-child { margin-bottom: 0; }
+    .about-visual {
+      position: relative;
+    }
+    .about-img-wrap {
+      position: relative;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .about-img-wrap img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      display: block;
+    }
+    .about-badge {
+      position: absolute;
+      bottom: -1.5rem;
+      left: -1.5rem;
+      width: 120px; height: 120px;
+      background: var(--amber);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1rem;
+    }
+    .about-badge span:first-child {
+      font-family: var(--font-head);
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: var(--brown);
+      line-height: 1;
+    }
+    .about-badge span:last-child {
+      font-size: .62rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--brown);
+      opacity: .8;
+    }
+
+    /* ── PRODUTOS ────────────────────────────────────────── */
+    .products { background: var(--cream); }
+    .products-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 3.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .products-head a {
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--rust);
+      text-decoration: none;
+      border-bottom: 1px solid var(--rust);
+      padding-bottom: 2px;
+      transition: opacity .2s;
+    }
+    .products-head a:hover { opacity: .7; }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(1rem, 2.5vw, 2rem);
+    }
+    @media (min-width: 901px) {
+      .products-grid .product-card:nth-child(4) { grid-column: 1 / 2; }
+      .products-grid .product-card:nth-child(5) { grid-column: 2 / 3; }
+    }
+
+    .product-card {
+      background: var(--cream2);
+      border-radius: 3px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform .3s, box-shadow .3s;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(57,44,35,.12);
+    }
+
+    .product-img-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+    .product-img-wrap img {
+      width: 100%;
+      aspect-ratio: 3/2.8;
+      object-fit: cover;
+      display: block;
+      transition: transform .5s ease;
+    }
+    .product-card:hover .product-img-wrap img { transform: scale(1.04); }
+
+    .product-tag {
+      position: absolute;
+      top: 1rem; left: 1rem;
+      background: var(--amber);
+      color: var(--brown);
+      font-size: .62rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .3rem .7rem;
+      border-radius: 2px;
+    }
+    .product-tag.green { background: var(--green); color: var(--cream); }
+    .product-tag.dark  { background: var(--brown); color: var(--cream); }
+
+    .product-info {
+      padding: 1.4rem 1.4rem 1.8rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-category {
+      font-size: .67rem;
+      font-weight: 500;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--rust);
+      margin-bottom: .5rem;
+    }
+    .product-name {
+      font-family: var(--font-head);
+      font-size: 1.45rem;
+      font-weight: 500;
+      color: var(--brown);
+      line-height: 1.2;
+      margin-bottom: .6rem;
+    }
+    .product-desc {
+      font-size: .82rem;
+      line-height: 1.7;
+      color: rgba(57,44,35,.65);
+      flex: 1;
+      margin-bottom: 1.2rem;
+    }
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .product-volume {
+      font-size: .75rem;
+      color: rgba(57,44,35,.5);
+      letter-spacing: .05em;
+    }
+    .btn-card {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .85rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--rust);
+      text-decoration: none;
+      border: 1px solid var(--rust);
+      padding: .5rem 1.2rem;
+      border-radius: 100px;
+      transition: background .2s, color .2s;
+    }
+    .btn-card:hover { background: var(--rust); color: var(--cream); }
+
+    /* ── VALORES ─────────────────────────────────────────── */
+    .values { background: var(--brown); }
+    .values .section-label { color: var(--amber); }
+    .values .section-title { color: var(--cream); }
+    .values .section-title em { color: var(--amber); }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(2rem, 4vw, 4rem);
+      margin-top: 4rem;
+    }
+    .value-card {
+      border-top: 1px solid rgba(237,235,220,.2);
+      padding-top: 2rem;
+    }
+    .value-num {
+      font-family: var(--font-head);
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: var(--amber);
+      opacity: .4;
+      line-height: 1;
+      margin-bottom: .8rem;
+    }
+    .value-title {
+      font-family: var(--font-head);
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--cream);
+      margin-bottom: .8rem;
+    }
+    .value-desc {
+      font-size: .85rem;
+      line-height: 1.75;
+      color: rgba(237,235,220,.6);
+    }
+
+    /* ── HOSPEDAGENS ─────────────────────────────────────── */
+    .stays { background: var(--cream2); }
+    .stays .section-label { color: var(--rust); }
+    .stays .section-title { color: var(--brown); }
+    .stays .section-title em { color: var(--rust); }
+
+    .stays-head {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: end;
+      margin-bottom: 3.5rem;
+    }
+    .stays-sub {
+      font-size: .95rem;
+      line-height: 1.8;
+      color: rgba(57,44,35,.65);
+    }
+
+    .stays-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(1rem, 2.5vw, 2rem);
+      margin-bottom: 3rem;
+    }
+
+    .stay-card {
+      background: var(--cream);
+      border: 1px solid rgba(57,44,35,.1);
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .stay-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 50px rgba(57,44,35,.12);
+    }
+
+    .stay-img-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+    .stay-img-wrap img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+      transition: transform .5s ease;
+    }
+    .stay-card:hover .stay-img-wrap img { transform: scale(1.05); }
+
+    .stay-badge {
+      position: absolute;
+      top: 1rem; left: 1rem;
+      background: var(--amber);
+      color: var(--brown);
+      font-size: .62rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .3rem .7rem;
+      border-radius: 2px;
+    }
+
+    .stay-info {
+      padding: 1.4rem 1.4rem 1.6rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .stay-location {
+      font-size: .67rem;
+      font-weight: 500;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--rust);
+      margin-bottom: .4rem;
+    }
+    .stay-name {
+      font-family: var(--font-head);
+      font-size: 1.55rem;
+      font-weight: 500;
+      color: var(--brown);
+      line-height: 1.2;
+      margin-bottom: .7rem;
+    }
+    .stay-specs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .3rem;
+      font-size: .75rem;
+      color: rgba(57,44,35,.45);
+      margin-bottom: .9rem;
+    }
+    .stay-dot { opacity: .35; }
+    .stay-desc {
+      font-size: .83rem;
+      line-height: 1.7;
+      color: rgba(57,44,35,.62);
+      flex: 1;
+      margin-bottom: 1.3rem;
+    }
+    .btn-stay {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: .85rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--rust);
+      text-decoration: none;
+      border: 1px solid rgba(157,72,21,.35);
+      padding: .55rem 1.3rem;
+      border-radius: 100px;
+      align-self: flex-start;
+      transition: background .2s, color .2s, border-color .2s;
+    }
+    .btn-stay:hover {
+      background: var(--rust);
+      color: var(--cream);
+      border-color: var(--rust);
+    }
+
+    .stays-amenities {
+      display: flex;
+      flex-wrap: wrap;
+      gap: clamp(1.5rem, 3vw, 3rem);
+      justify-content: center;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(57,44,35,.12);
+    }
+    .amenity {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      color: rgba(57,44,35,.5);
+      font-size: .8rem;
+      letter-spacing: .06em;
+    }
+    .amenity svg { flex-shrink: 0; opacity: .6; }
+
+    /* ── BANNER CAMISA ───────────────────────────────────── */
+    .banner-shirt {
+      position: relative;
+      height: 70vh;
+      min-height: 400px;
+      overflow: hidden;
+    }
+    .banner-shirt img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 25%;
+      filter: brightness(.6);
+    }
+    .banner-shirt-content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+    .banner-shirt-content .section-label { color: var(--amber); margin-bottom: 1rem; }
+    .banner-shirt-title {
+      font-family: var(--font-head);
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--cream);
+      line-height: 1.1;
+      margin-bottom: 1.6rem;
+      max-width: 700px;
+    }
+    .banner-shirt-title strong {
+      font-style: normal;
+      font-weight: 600;
+      display: block;
+    }
+    .btn-banner {
+      display: inline-block;
+      background: transparent;
+      border: 1px solid var(--cream);
+      color: var(--cream);
+      font-size: .95rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .9rem 2.2rem;
+      text-decoration: none;
+      border-radius: 100px;
+      transition: background .2s, color .2s;
+    }
+    .btn-banner:hover { background: var(--amber); border-color: var(--amber); color: var(--brown); }
+
+    /* ── CONTATO / FOOTER ────────────────────────────────── */
+    .footer-cta {
+      background: #ffffff;
+      padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 4rem);
+      text-align: center;
+    }
+    .footer-cta .section-label { color: var(--rust); justify-content: center; display: flex; margin-bottom: 1rem; }
+    .footer-cta .section-title { color: var(--brown); text-align: center; margin-bottom: 1rem; }
+    .footer-cta p {
+      color: rgba(57,44,35,.6);
+      font-size: .9rem;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+    .footer-cta-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-cta {
+      display: inline-block;
+      padding: .95rem 2.4rem;
+      border-radius: 100px;
+      font-size: .95rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all .2s;
+    }
+    .btn-cta.primary { background: var(--amber); color: var(--brown); }
+    .btn-cta.primary:hover { background: var(--rust); color: var(--cream); }
+    .btn-cta.outline { border: 1px solid rgba(57,44,35,.3); color: var(--brown); }
+    .btn-cta.outline:hover { border-color: var(--rust); color: var(--rust); }
+
+    footer {
+      background: var(--brown);
+      padding: 3rem clamp(1.5rem, 5vw, 4rem);
+    }
+    .footer-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+    }
+    .footer-brand img { height: 38px; margin-bottom: 1.2rem; filter: brightness(0) invert(.9) sepia(.2) saturate(.5); }
+    .footer-brand p {
+      font-size: .82rem;
+      line-height: 1.7;
+      color: rgba(237,235,220,.45);
+    }
+    .footer-col h4 {
+      font-family: var(--font-body);
+      font-size: .68rem;
+      font-weight: 500;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1.2rem;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: .6rem; }
+    .footer-col ul li a {
+      font-size: .82rem;
+      color: rgba(237,235,220,.5);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .footer-col ul li a:hover { color: var(--cream); }
+
+    .footer-bottom {
+      max-width: var(--max);
+      margin: 2.5rem auto 0;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(237,235,220,.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-bottom p {
+      font-size: .72rem;
+      color: rgba(237,235,220,.3);
+      letter-spacing: .05em;
+    }
+    .social-links {
+      display: flex;
+      gap: 1rem;
+    }
+    .social-links a {
+      width: 34px; height: 34px;
+      border: 1px solid rgba(237,235,220,.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(237,235,220,.4);
+      text-decoration: none;
+      font-size: .8rem;
+      transition: all .2s;
+    }
+    .social-links a:hover {
+      border-color: var(--amber);
+      color: var(--amber);
+    }
+
+    /* ── INSTAGRAM ───────────────────────────────────────── */
+    .instagram { background: var(--cream2); }
+    .instagram .section-label { color: var(--rust); }
+    .instagram .section-title { color: var(--brown); }
+    .instagram .section-title em { color: var(--rust); }
+
+    .insta-head { text-align: center; margin-bottom: 2.5rem; }
+    .insta-handle {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      margin-top: 1rem;
+      font-size: .85rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      color: var(--rust);
+      text-decoration: none;
+      transition: opacity .2s;
+    }
+    .insta-handle:hover { opacity: .7; }
+
+    .insta-feed-wrap { width: 100%; }
+
+    .ig-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 4px;
+    }
+
+    /* cada post */
+    .ig-post {
+      position: relative;
+      display: block;
+      overflow: hidden;
+      aspect-ratio: 1;
+      background: var(--cream);
+    }
+    .ig-post img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .45s ease;
+    }
+    .ig-post:hover img { transform: scale(1.06); }
+    .ig-post-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(57,44,35,.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .ig-post:hover .ig-post-overlay { opacity: 1; }
+    .ig-post-overlay svg { color: #fff; }
+
+    /* skeleton loader */
+    .ig-skeleton {
+      aspect-ratio: 1;
+      background: linear-gradient(90deg, var(--cream) 25%, #e8e5d8 50%, var(--cream) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+    }
+    @keyframes shimmer {
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* fallback */
+    .ig-fallback {
+      grid-column: 1 / -1;
+      padding: 3rem 2rem;
+      text-align: center;
+      border: 1px dashed rgba(57,44,35,.2);
+      border-radius: 4px;
+    }
+    .ig-fallback p {
+      font-size: .85rem;
+      color: rgba(57,44,35,.5);
+      margin-bottom: 1rem;
+    }
+
+    .insta-cta { text-align: center; margin-top: 2rem; }
+    .btn-insta {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      background: var(--brown);
+      color: var(--cream);
+      font-size: .95rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: .9rem 2.2rem;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .btn-insta:hover { background: var(--rust); }
+
+    @media (max-width: 640px) {
+      .ig-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .about .container { grid-template-columns: 1fr; }
+      .about-visual { order: -1; }
+      .about-badge { display: none; }
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .stays-head { grid-template-columns: 1fr; gap: 1rem; }
+      .stays-grid { grid-template-columns: repeat(2, 1fr); }
+      .values-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .nav-toggle { display: flex; }
+      nav {
+        display: flex;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.4rem;
+        background: #9f4913;
+        padding: 1.6rem clamp(1.5rem, 5vw, 4rem) 2rem;
+        border-bottom: 1px solid rgba(0,0,0,.15);
+        transform: translateY(-8px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity .2s ease, transform .2s ease;
+      }
+      nav.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .slider-arrow { top: 1.25rem; transform: none; }
+      .slider-arrow.prev { left: 1.25rem; }
+      .slider-arrow.next { right: 1.25rem; }
+      .products-grid { grid-template-columns: 1fr; }
+      .stays-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .hero-scroll { display: none; }
+    }
+
+    /* ── FADE-IN ANIMATION ───────────────────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <!-- ── HEADER ──────────────────────────────────────────── -->
+  <header id="site-header">
+    <a href="#" class="logo">
+      <img src="assets/logo-cream.png" alt="Viveiro Porto Seguro">
+    </a>
+    <nav id="site-nav">
+      <a href="#hospedagens">Hospede-se</a>
+      <a href="#sobre">História</a>
+      <a href="#produtos">Produtos</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="site-nav">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- ── HERO SLIDER ─────────────────────────────────────── -->
+  <section class="hero" id="hero-slider">
+
+    <!-- Slide 1 — Hospedagem -->
+    <div class="slide active">
+      <img class="slide-img" src="assets/hospedagem-banner.jpg" alt="Casa da Mata — Viveiro Porto Seguro" style="object-position: center 40%;">
+      <div class="slide-overlay">
+        <div class="hero-text">
+          <p class="hero-eyebrow">Ecoturismo · Itatiaia, Rio de Janeiro</p>
+          <h1 class="hero-title">Desperte<br>entre<br><em>a mata.</em></h1>
+          <p class="hero-sub">
+            Três hospedagens em meio à Mata Atlântica,<br>
+            sauna à lenha, trilhas e silêncio de verdade.
+          </p>
+          <a href="#hospedagens" class="btn-hero">Ver hospedagens</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2 — Chocolate -->
+    <div class="slide">
+      <img class="slide-img" src="assets/chocolate.jpg" alt="Chocolate Noir — Viveiro Porto Seguro" style="object-position: center;">
+      <div class="slide-overlay">
+        <div class="hero-text">
+          <p class="hero-eyebrow">Chocolate Fino · Sul da Bahia</p>
+          <h1 class="hero-title">Intenso<br>como a floresta<br><em>que o criou.</em></h1>
+          <p class="hero-sub">
+            Chocolate Noir 70% cacau, cultivado em sistema<br>
+            agroflorestal no sul da Bahia. Da sombra das árvores<br>para o seu paladar.
+          </p>
+          <a href="https://viveiroportoseguro.lojavirtualnuvem.com.br" class="btn-hero" target="_blank">Conhecer</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 — Mel -->
+    <div class="slide">
+      <img class="slide-img" src="assets/mel2.jpg" alt="Mel de Florada Silvestre — Viveiro Porto Seguro" style="object-position: center 30%;">
+      <div class="slide-overlay">
+        <div class="hero-text">
+          <p class="hero-eyebrow">Produto Agroecológico · Mel Puro</p>
+          <h1 class="hero-title">Da colmeia<br>para a mesa,<br><em>sem atalhos.</em></h1>
+          <p class="hero-sub">
+            Mel de Florada Silvestre, cru e íntegro —<br>
+            mantendo todas as propriedades e o sabor<br>autêntico da natureza.
+          </p>
+          <a href="https://viveiroportoseguro.lojavirtualnuvem.com.br" class="btn-hero" target="_blank">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controles -->
+    <button class="slider-arrow prev" aria-label="Anterior">&#8592;</button>
+    <button class="slider-arrow next" aria-label="Próximo">&#8594;</button>
+
+    <div class="slider-dots">
+      <button class="dot active" data-index="0" aria-label="Slide 1"></button>
+      <button class="dot" data-index="1" aria-label="Slide 2"></button>
+      <button class="dot" data-index="2" aria-label="Slide 3"></button>
+    </div>
+
+  </section>
+
+  <!-- ── MANIFESTO STRIP ──────────────────────────────────── -->
+  <div class="manifesto">
+    <div class="manifesto-items">
+      <div class="manifesto-item"><span class="manifesto-dot"></span>Produto Agroecológico</div>
+      <div class="manifesto-item"><span class="manifesto-dot"></span>Sem Agrotóxicos</div>
+      <div class="manifesto-item"><span class="manifesto-dot"></span>Vegano &amp; Cruelty-Free</div>
+      <div class="manifesto-item"><span class="manifesto-dot"></span>Cultivado no Sul da Bahia</div>
+      <div class="manifesto-item"><span class="manifesto-dot"></span>Sistema Agroflorestal</div>
+    </div>
+  </div>
+
+  <!-- ── HOSPEDAGENS ──────────────────────────────────────── -->
+  <section class="stays" id="hospedagens">
+    <div class="container">
+      <div class="stays-head">
+        <div>
+          <p class="section-label">Ecoturismo · Itatiaia, RJ</p>
+          <h2 class="section-title">Hospede-se no <em>Viveiro</em></h2>
+        </div>
+        <p class="stays-sub">
+          Três opções de hospedagem em meio à Mata Atlântica, aos pés do Parque Nacional de Itatiaia. Sauna à lenha, piscina de hidromassagem, trilhas e banho de rio — tudo com privacidade e sossego.
+        </p>
+      </div>
+
+      <div class="stays-grid">
+
+        <!-- Casa da Mata -->
+        <div class="stay-card fade-up">
+          <div class="stay-img-wrap">
+            <img src="https://a0.muscache.com/im/pictures/miso/Hosting-852870895610040620/original/67537b59-c688-4999-9563-e8238c0bbc9b.jpeg?im_w=720&width=720&quality=70&auto=webp" alt="Casa da Mata">
+            <span class="stay-badge">Casa inteira</span>
+          </div>
+          <div class="stay-info">
+            <p class="stay-location">Itatiaia, Rio de Janeiro</p>
+            <h3 class="stay-name">Casa da Mata</h3>
+            <div class="stay-specs">
+              <span>2 hóspedes</span><span class="stay-dot">·</span>
+              <span>1 quarto</span><span class="stay-dot">·</span>
+              <span>1 cama</span><span class="stay-dot">·</span>
+              <span>1 banheiro</span>
+            </div>
+            <p class="stay-desc">Descanse e curta a natureza com sauna finlandesa à lenha, vista para o Parque Nacional de Itatiaia e acesso a cachoeiras, trilhas e banho de rio.</p>
+            <a href="https://www.airbnb.com.br/rooms/852870895610040620" class="btn-stay" target="_blank">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.14 13.67l-2.94-.916c-.638-.203-.654-.638.136-.946l11.498-4.43c.531-.194.994.131.799.947l.261-.104z"/></svg>
+              Ver no Airbnb
+            </a>
+          </div>
+        </div>
+
+        <!-- Casinha do Vale -->
+        <div class="stay-card fade-up">
+          <div class="stay-img-wrap">
+            <img src="https://a0.muscache.com/im/pictures/miso/Hosting-824088130820166473/original/0db9f744-8072-47fe-8213-f7a50b01cfd4.jpeg?im_w=720&width=720&quality=70&auto=webp" alt="Casinha do Vale">
+            <span class="stay-badge">Casa de campo</span>
+          </div>
+          <div class="stay-info">
+            <p class="stay-location">Itatiaia, Rio de Janeiro</p>
+            <h3 class="stay-name">Casinha do Vale</h3>
+            <div class="stay-specs">
+              <span>4 hóspedes</span><span class="stay-dot">·</span>
+              <span>1 quarto</span><span class="stay-dot">·</span>
+              <span>1 cama</span><span class="stay-dot">·</span>
+              <span>1 banheiro</span>
+            </div>
+            <p class="stay-desc">Descanse e curta a natureza com sauna finlandesa à lenha, vista para o Parque Nacional de Itatiaia e acesso a cachoeiras, trilhas e banho de rio.</p>
+            <a href="https://www.airbnb.com.br/rooms/824088130820166473" class="btn-stay" target="_blank">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.14 13.67l-2.94-.916c-.638-.203-.654-.638.136-.946l11.498-4.43c.531-.194.994.131.799.947l.261-.104z"/></svg>
+              Ver no Airbnb
+            </a>
+          </div>
+        </div>
+
+        <!-- Casa do Bosque -->
+        <div class="stay-card fade-up">
+          <div class="stay-img-wrap">
+            <img src="https://a0.muscache.com/im/pictures/miso/Hosting-851974584569636323/original/1ccf12fe-1e92-4c72-a83a-6ad11ba315bd.png?im_w=720&width=720&quality=70&auto=webp" alt="Casa do Bosque">
+            <span class="stay-badge">Estúdio</span>
+          </div>
+          <div class="stay-info">
+            <p class="stay-location">Itatiaia, Rio de Janeiro</p>
+            <h3 class="stay-name">Casa do Bosque</h3>
+            <div class="stay-specs">
+              <span>2 hóspedes</span><span class="stay-dot">·</span>
+              <span>Estúdio</span><span class="stay-dot">·</span>
+              <span>1 cama</span><span class="stay-dot">·</span>
+              <span>1 banheiro</span>
+            </div>
+            <p class="stay-desc">Descanse e curta a natureza com sauna finlandesa à lenha, vista para o Parque Nacional de Itatiaia e acesso a cachoeiras, trilhas e banho de rio.</p>
+            <a href="https://www.airbnb.com.br/rooms/851974584569636323" class="btn-stay" target="_blank">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.14 13.67l-2.94-.916c-.638-.203-.654-.638.136-.946l11.498-4.43c.531-.194.994.131.799.947l.261-.104z"/></svg>
+              Ver no Airbnb
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- amenities strip -->
+      <div class="stays-amenities fade-up">
+        <div class="amenity">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          <span>Parque Nacional de Itatiaia</span>
+        </div>
+        <div class="amenity">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg>
+          <span>Sauna Finlandesa à Lenha</span>
+        </div>
+        <div class="amenity">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <span>Piscina de Hidromassagem</span>
+        </div>
+        <div class="amenity">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.44 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span>Cachoeiras &amp; Trilhas</span>
+        </div>
+        <div class="amenity">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+          <span>Banho de Rio</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── SOBRE ────────────────────────────────────────────── -->
+  <section class="about" id="sobre">
+    <div class="container">
+      <div class="about-visual">
+        <div class="about-img-wrap">
+          <img src="assets/armando.png" alt="Armando Herz — Viveiro Porto Seguro">
+        </div>
+        <div class="about-badge">
+          <span>+10</span>
+          <span>anos cultivando</span>
+        </div>
+      </div>
+      <div class="about-body fade-up">
+        <p class="section-label">Nossa História</p>
+        <h2 class="section-title">
+          Raíz, copa<br>e <em>fruto.</em>
+        </h2>
+        <br>
+        <p>
+          Sou Armando Herz — biólogo educador, com foco em permacultura e agrofloresta. Cuido do Viveiro Porto Seguro na recepção dos hóspedes, nos manejos dos SAF's e na criação das abelhas.
+        </p>
+        <p>
+          Este projeto surgiu como um sonho pessoal e que evoluiu para ser um Porto Seguro para quem precisa de reconexão com a Natureza. Estamos localizados na serra da Índia, em Itatiaia — Rio de Janeiro.
+        </p>
+        <p>
+          Nossos produtos são uma extensão desse ciclo: feitos com o que a floresta já sabe oferecer. Tudo sem agrotóxicos, sem crueldade, sem pressa. Acreditamos que o futuro se constrói com raízes. E cada produto que chega até você carrega esse compromisso.
+        </p>
+        <p>
+          Sejam muito bem vindos à nossa casa. <em>Te esperamos para imergir com a gente nessa Terra.</em>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PRODUTOS ─────────────────────────────────────────── -->
+  <section class="products" id="produtos">
+    <div class="container">
+      <div class="products-head">
+        <div>
+          <p class="section-label">Loja</p>
+          <h2 class="section-title">Nossos <em>produtos</em></h2>
+        </div>
+        <a href="https://viveiroportoseguro.lojavirtualnuvem.com.br" target="_blank">Ver todos →</a>
+      </div>
+
+      <div class="products-grid">
+
+        <!-- Mel -->
+        <div class="product-card fade-up">
+          <div class="product-img-wrap">
+            <img src="assets/mel.jpg" alt="Mel de Florada Silvestre">
+            <span class="product-tag">Agroecológico</span>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Alimentos</p>
+            <h3 class="product-name">Mel de Florada Silvestre</h3>
+            <p class="product-desc">
+              O ciclo completo da natureza em seu estado mais puro. Alimento cru, direto da colmeia para a mesa, mantendo propriedades e sabor autênticos.
+            </p>
+            <div class="product-footer">
+              <span class="product-volume">300ml · 430g</span>
+              <a href="https://viveiroportoseguro.lojavirtualnuvem.com.br" class="btn-card" target="_blank">Comprar</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chocolate -->
+        <div class="product-card fade-up">
+          <div class="product-img-wrap">
+            <img src="assets/chocolate.jpg" alt="Chocolate Noir">
+            <span class="product-tag dark">Fino</span>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Chocolates</p>
+            <h3 class="product-name">Chocolate Noir</h3>
+            <p class="product-desc">
+              Chocolate Noir Fino cultivado no sul da Bahia em sistema agroflorestal. Do cultivo ao Viveiro Porto Seguro, cada barra carrega esse caminho.
+            </p>
+            <div class="product-footer">
+              <span class="product-volume">80g · 70% cacau</span>
+              <a href="https://viveiroportoseguro.lojavirtualnuvem.com.br" class="btn-card" target="_blank">Comprar</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kit Banho -->
+        <div class="product-card fade-up">
+          <div class="product-img-wrap">
+            <img src="assets/sabonete.jpg" alt="Kit Banho Vegano" style="object-position: center 60%;">
+            <span class="product-tag green">Vegano</span>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Cosméticos</p>
+            <h3 class="product-name">Kit Banho</h3>
+            <p class="product-desc">
+              Feito com ingredientes que vêm da natureza e voltam pra ela. Argila, ervas e fórmula 100% vegana, sem prejudicar nenhum animal no caminho.
+            </p>
+            <div class="product-footer">
+              <span class="product-volume">Vegano · Cruelty-Free</span>
+              <a href="https://viveiroportoseguro.lojavirtualnuvem.com.br" class="btn-card" target="_blank">Comprar</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ecobag -->
+        <div class="product-card fade-up">
+          <div class="product-img-wrap">
+            <img src="assets/ecobag.jpg" alt="Ecobag Viveiro" style="object-position: center 30%;">
+            <span class="product-tag">Exclusivo</span>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Acessórios</p>
+            <h3 class="product-name">Ecobag "Raíz, Copa e Fruto"</h3>
+            <p class="product-desc">
+              Sacola de algodão com estampa exclusiva do Viveiro Porto Seguro. Arte que representa a flor da Ora-pro-nóbis, símbolo da nossa identidade.
+            </p>
+            <div class="product-footer">
+              <span class="product-volume">Algodão natural</span>
+              <a href="https://viveiroportoseguro.lojavirtualnuvem.com.br" class="btn-card" target="_blank">Comprar</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Camisa -->
+        <div class="product-card fade-up">
+          <div class="product-img-wrap">
+            <img src="assets/camisa.jpg" alt="Camisa Viveiro Porto Seguro" style="object-position: center 10%;">
+            <span class="product-tag dark">Lançamento</span>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Vestuário</p>
+            <h3 class="product-name">Camiseta — Viveiro Porto Seguro</h3>
+            <p class="product-desc">
+              Camiseta unissex em algodão pesado, cor terra. Com o logo bordado à frente e a frase "O Futuro Precisa de Raízes Profundas" nas costas.
+            </p>
+            <div class="product-footer">
+              <span class="product-volume">P · M · G · GG</span>
+              <a href="https://viveiroportoseguro.lojavirtualnuvem.com.br" class="btn-card" target="_blank">Comprar</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── VALORES ───────────────────────────────────────────── -->
+  <section class="values" id="valores">
+    <div class="container">
+      <p class="section-label">O que nos guia</p>
+      <h2 class="section-title">Comprometidos com a <em>terra</em><br>e com quem nela vive.</h2>
+
+      <div class="values-grid">
+        <div class="value-card fade-up">
+          <div class="value-num">01</div>
+          <h3 class="value-title">Agroecologia</h3>
+          <p class="value-desc">
+            Cultivamos em sistema agroflorestal, onde a biodiversidade é a nossa maior ferramenta. Sem agrotóxicos, sem monocultura — apenas o equilíbrio entre espécies que a natureza já sabe organizar.
+          </p>
+        </div>
+        <div class="value-card fade-up">
+          <div class="value-num">02</div>
+          <h3 class="value-title">Origem Rastreável</h3>
+          <p class="value-desc">
+            Cada produto nasce em Porto Seguro, Bahia, e chega a você com histórico completo de cultivo. Do solo à embalagem, sabemos exatamente o que você está consumindo — e nos orgulhamos de cada etapa.
+          </p>
+        </div>
+        <div class="value-card fade-up">
+          <div class="value-num">03</div>
+          <h3 class="value-title">Sem Crueldade</h3>
+          <p class="value-desc">
+            Todos os nossos cosméticos são veganos e cruelty-free. Acreditamos que cuidar de si mesmo não deve custar o bem-estar de outros seres. A natureza oferece tudo que precisamos sem violência.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── INSTAGRAM ────────────────────────────────────────── -->
+  <section class="instagram">
+    <div class="container">
+      <div class="insta-head fade-up">
+        <p class="section-label" style="text-align:center;">Redes Sociais</p>
+        <h2 class="section-title">Nossa vida<br>na <em>floresta.</em></h2>
+        <a href="https://www.instagram.com/viveiroportoseguro/" target="_blank" class="insta-handle">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+          @viveiroportoseguro
+        </a>
+      </div>
+
+      <div class="insta-feed-wrap fade-up">
+        <div class="ig-grid" id="ig-grid">
+          <!-- preenchido via JS -->
+          <div class="ig-skeleton"></div>
+          <div class="ig-skeleton"></div>
+          <div class="ig-skeleton"></div>
+          <div class="ig-skeleton"></div>
+          <div class="ig-skeleton"></div>
+          <div class="ig-skeleton"></div>
+        </div>
+      </div>
+
+      <div class="insta-cta fade-up">
+        <a href="https://www.instagram.com/viveiroportoseguro/" target="_blank" class="btn-insta">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+          Seguir no Instagram
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER CTA ────────────────────────────────────────── -->
+  <div class="footer-cta" id="contato">
+    <div class="container">
+      <p class="section-label">Fale conosco</p>
+      <h2 class="section-title">Venha crescer com a gente.</h2>
+      <p>
+        Quer fazer um pedido, tirar dúvidas sobre nossos produtos<br>
+        ou saber mais sobre o viveiro? Estamos aqui.
+      </p>
+      <div class="footer-cta-btns">
+        <a href="https://wa.me/5573999999999" class="btn-cta primary" target="_blank">Falar no WhatsApp</a>
+        <a href="https://viveiroportoseguro.lojavirtualnuvem.com.br" class="btn-cta outline" target="_blank">Acessar loja</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ────────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="assets/logo-brown.png" alt="Viveiro Porto Seguro">
+        <p>
+          Cultivando com respeito à terra e à vida.<br>
+          Porto Seguro, Bahia — Brasil.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Produtos</h4>
+        <ul>
+          <li><a href="#">Mel de Florada Silvestre</a></li>
+          <li><a href="#">Chocolate Noir</a></li>
+          <li><a href="#">Kit Banho</a></li>
+          <li><a href="#">Ecobag</a></li>
+          <li><a href="#">Camiseta</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Institucional</h4>
+        <ul>
+          <li><a href="#">Nossa história</a></li>
+          <li><a href="#">Agroecologia</a></li>
+          <li><a href="#">Certificações</a></li>
+          <li><a href="#">Contato</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="#">Porto Seguro, BA</a></li>
+          <li><a href="mailto:contato@viveiroportoseguro.com.br">contato@viveiroportoseguro.com.br</a></li>
+          <li><a href="#">WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Viveiro Porto Seguro. Todos os direitos reservados.</p>
+      <div class="social-links">
+        <a href="#" title="Instagram">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+        <a href="#" title="Facebook">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+          </svg>
+        </a>
+        <a href="#" title="WhatsApp">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Header shadow on scroll
+    const header = document.getElementById('site-header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Mobile nav toggle
+    const navToggle = document.getElementById('nav-toggle');
+    const siteNav = document.getElementById('site-nav');
+    navToggle.addEventListener('click', () => {
+      const isOpen = siteNav.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', isOpen);
+      navToggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
+    });
+    siteNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        siteNav.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.setAttribute('aria-label', 'Abrir menu');
+      });
+    });
+
+    // Fade-up on scroll
+    const fadeEls = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    fadeEls.forEach(el => observer.observe(el));
+
+    // Hero Slider
+    const slides = document.querySelectorAll('.slide');
+    const dots   = document.querySelectorAll('.dot');
+    let current  = 0;
+    let timer;
+
+    function goTo(index) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = (index + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+    }
+
+    function next() { goTo(current + 1); }
+    function prev() { goTo(current - 1); }
+
+    function startAuto() {
+      clearInterval(timer);
+      timer = setInterval(next, 5500);
+    }
+
+    document.querySelector('.slider-arrow.next').addEventListener('click', () => { next(); startAuto(); });
+    document.querySelector('.slider-arrow.prev').addEventListener('click', () => { prev(); startAuto(); });
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => { goTo(+dot.dataset.index); startAuto(); });
+    });
+
+    startAuto();
+
+    // ── Instagram Feed — imagens estáticas para apresentação ─
+    (function renderIGFeed() {
+      const USERNAME = 'viveiroportoseguro';
+      const PROFILE  = 'https://www.instagram.com/viveiroportoseguro/';
+      const igIcon   = `<svg width="26" height="26" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="1.5">
+        <rect x="2" y="2" width="20" height="20" rx="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+      </svg>`;
+
+      const posts = [
+        { src: 'assets/hospedagem-banner.jpg' },
+        { src: 'assets/mel2.jpg'              },
+        { src: 'assets/ecobag.jpg'            },
+        { src: 'assets/chocolate.jpg'         },
+        { src: 'assets/armando.png'           },
+        { src: 'assets/camisa.jpg'            },
+      ];
+
+      document.getElementById('ig-grid').innerHTML = posts.map(({ src }) => `
+        <a class="ig-post" href="${PROFILE}" target="_blank" rel="noopener">
+          <img src="${src}" alt="@${USERNAME}" loading="lazy">
+          <div class="ig-post-overlay">${igIcon}</div>
+        </a>`).join('');
+    })();
+  </script>
+
+</body>
+</html>
