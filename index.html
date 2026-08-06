@@ -1557,7 +1557,10 @@
 
     function startAuto() {
       clearInterval(timer);
-      timer = setInterval(next, 5500);
+      timer = setInterval(next, 3000);
+    }
+    function stopAuto() {
+      clearInterval(timer);
     }
 
     document.querySelector('.slider-arrow.next').addEventListener('click', () => { next(); startAuto(); });
@@ -1565,6 +1568,10 @@
     dots.forEach(dot => {
       dot.addEventListener('click', () => { goTo(+dot.dataset.index); startAuto(); });
     });
+
+    const heroSlider = document.getElementById('hero-slider');
+    heroSlider.addEventListener('mouseenter', stopAuto);
+    heroSlider.addEventListener('mouseleave', startAuto);
 
     startAuto();
 
