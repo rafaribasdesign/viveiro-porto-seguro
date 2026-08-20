@@ -116,7 +116,9 @@
       height: calc(100vh - 70px);
       min-height: 560px;
       overflow: hidden;
+      cursor: grab;
     }
+    .hero.dragging { cursor: grabbing; user-select: none; }
 
     .slide {
       position: absolute;
@@ -165,7 +167,7 @@
       font-family: var(--font-head);
       font-size: clamp(3rem, 6vw, 5.5rem);
       font-weight: 400;
-      line-height: .98;
+      line-height: .9;
       color: var(--cream);
       margin-bottom: 1.6rem;
     }
@@ -176,7 +178,7 @@
       font-weight: 300;
       color: rgba(237,235,220,.9);
       letter-spacing: .02em;
-      line-height: 1.5;
+      line-height: 1.3;
       margin-bottom: 2.2rem;
     }
     .btn-hero {
@@ -648,18 +650,34 @@
       font-weight: 500;
       letter-spacing: .08em;
       text-transform: uppercase;
-      color: var(--rust);
+      color: var(--cream);
       text-decoration: none;
-      border: 1px solid rgba(157,72,21,.35);
+      background: var(--brown);
+      border: 1px solid var(--brown);
       padding: .55rem 1.3rem;
       border-radius: 100px;
       align-self: flex-start;
-      transition: background .2s, color .2s, border-color .2s;
+      box-shadow: 0 4px 14px rgba(57,44,35,.28);
+      transition: background .25s, border-color .25s, transform .25s, box-shadow .25s;
+      animation: btn-stay-pulse 2.6s ease-in-out infinite;
     }
+    .btn-stay svg { transition: transform .3s ease; }
     .btn-stay:hover {
       background: var(--rust);
-      color: var(--cream);
       border-color: var(--rust);
+      color: var(--cream);
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 12px 26px rgba(157,72,21,.4);
+      animation-play-state: paused;
+    }
+    .btn-stay:hover svg { transform: rotate(-8deg) scale(1.15); }
+
+    @keyframes btn-stay-pulse {
+      0%, 100% { box-shadow: 0 4px 14px rgba(57,44,35,.28); }
+      50% { box-shadow: 0 4px 20px rgba(157,72,21,.5); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .btn-stay { animation: none; }
     }
 
     .stays-amenities {
@@ -1552,6 +1570,42 @@
     const heroSlider = document.getElementById('hero-slider');
     heroSlider.addEventListener('mouseenter', stopAuto);
     heroSlider.addEventListener('mouseleave', startAuto);
+
+    // Click & drag control (desktop)
+    let isDragging = false;
+    let dragMoved = false;
+    let dragStartX = 0;
+    let dragStartY = 0;
+    const DRAG_THRESHOLD = 50;
+
+    heroSlider.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      dragMoved = false;
+      dragStartX = e.clientX;
+      dragStartY = e.clientY;
+      heroSlider.classList.add('dragging');
+      stopAuto();
+    });
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      if (Math.abs(e.clientX - dragStartX) > 5) dragMoved = true;
+      if (dragMoved) e.preventDefault();
+    });
+    window.addEventListener('mouseup', (e) => {
+      if (!isDragging) return;
+      isDragging = false;
+      heroSlider.classList.remove('dragging');
+      const dx = e.clientX - dragStartX;
+      const dy = e.clientY - dragStartY;
+      if (Math.abs(dx) > DRAG_THRESHOLD && Math.abs(dx) > Math.abs(dy)) {
+        dx < 0 ? next() : prev();
+      }
+      startAuto();
+    });
+    // Avoid triggering link/button clicks when the mousedown turned into a drag
+    heroSlider.addEventListener('click', (e) => {
+      if (dragMoved) { e.preventDefault(); e.stopPropagation(); }
+    }, true);
 
     // Swipe (touch) control
     let touchStartX = 0;
