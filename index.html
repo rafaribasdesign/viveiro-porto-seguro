@@ -393,10 +393,6 @@
       grid-template-columns: repeat(3, 1fr);
       gap: clamp(1rem, 2.5vw, 2rem);
     }
-    @media (min-width: 901px) {
-      .products-grid .product-card:nth-child(4) { grid-column: 1 / 2; }
-      .products-grid .product-card:nth-child(5) { grid-column: 2 / 3; }
-    }
 
     .product-card {
       background: var(--cream2);
@@ -495,6 +491,12 @@
       transition: background .2s, color .2s;
     }
     .btn-card:hover { background: var(--rust); color: var(--cream); }
+    .btn-card.soon {
+      color: rgba(57,44,35,.4);
+      border-color: rgba(57,44,35,.25);
+      cursor: default;
+    }
+    .btn-card.soon:hover { background: transparent; color: rgba(57,44,35,.4); }
 
     /* ── VALORES ─────────────────────────────────────────── */
     .values { background: var(--brown); }
@@ -1252,25 +1254,6 @@
 
       <div class="products-grid">
 
-        <!-- Mel -->
-        <div class="product-card fade-up">
-          <div class="product-img-wrap">
-            <img src="assets/mel.jpg" alt="Mel de Florada Silvestre">
-            <span class="product-tag">Agroecológico</span>
-          </div>
-          <div class="product-info">
-            <p class="product-category">Alimentos</p>
-            <h3 class="product-name">Mel de Florada Silvestre</h3>
-            <p class="product-desc">
-              O ciclo completo da natureza em seu estado mais puro. Alimento cru, direto da colmeia para a mesa, mantendo propriedades e sabor autênticos.
-            </p>
-            <div class="product-footer">
-              <span class="product-volume">300ml · 430g</span>
-              <a href="https://viveiroportoseguro.lojavirtualnuvem.com.br" class="btn-card" target="_blank">Comprar</a>
-            </div>
-          </div>
-        </div>
-
         <!-- Chocolate -->
         <div class="product-card fade-up">
           <div class="product-img-wrap">
@@ -1290,21 +1273,21 @@
           </div>
         </div>
 
-        <!-- Kit Banho -->
+        <!-- Mel -->
         <div class="product-card fade-up">
           <div class="product-img-wrap">
-            <img src="assets/sabonete.jpg" alt="Kit Banho Vegano" style="object-position: center 60%;">
-            <span class="product-tag green">Vegano</span>
+            <img src="assets/mel.jpg" alt="Mel de Florada Silvestre">
+            <span class="product-tag">Agroecológico</span>
           </div>
           <div class="product-info">
-            <p class="product-category">Cosméticos</p>
-            <h3 class="product-name">Kit Banho</h3>
+            <p class="product-category">Alimentos</p>
+            <h3 class="product-name">Mel de Florada Silvestre</h3>
             <p class="product-desc">
-              Feito com ingredientes que vêm da natureza e voltam pra ela. Argila, ervas e fórmula 100% vegana, sem prejudicar nenhum animal no caminho.
+              O ciclo completo da natureza em seu estado mais puro. Alimento cru, direto da colmeia para a mesa, mantendo propriedades e sabor autênticos.
             </p>
             <div class="product-footer">
-              <span class="product-volume">Vegano · Cruelty-Free</span>
-              <a href="https://viveiroportoseguro.lojavirtualnuvem.com.br" class="btn-card" target="_blank">Comprar</a>
+              <span class="product-volume">300ml · 430g</span>
+              <span class="btn-card soon">Em breve</span>
             </div>
           </div>
         </div>
@@ -1323,7 +1306,7 @@
             </p>
             <div class="product-footer">
               <span class="product-volume">Algodão natural</span>
-              <a href="https://viveiroportoseguro.lojavirtualnuvem.com.br" class="btn-card" target="_blank">Comprar</a>
+              <span class="btn-card soon">Em breve</span>
             </div>
           </div>
         </div>
@@ -1342,7 +1325,7 @@
             </p>
             <div class="product-footer">
               <span class="product-volume">P · M · G · GG</span>
-              <a href="https://viveiroportoseguro.lojavirtualnuvem.com.br" class="btn-card" target="_blank">Comprar</a>
+              <span class="btn-card soon">Em breve</span>
             </div>
           </div>
         </div>
