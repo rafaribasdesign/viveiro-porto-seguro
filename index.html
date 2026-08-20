@@ -984,9 +984,7 @@
         opacity: 1;
         pointer-events: auto;
       }
-      .slider-arrow { top: 1.25rem; transform: none; }
-      .slider-arrow.prev { left: 1.25rem; }
-      .slider-arrow.next { right: 1.25rem; }
+      .slider-arrow { display: none; }
       .products-grid { grid-template-columns: 1fr; }
       .stays-grid { grid-template-columns: 1fr; }
       .footer-inner { grid-template-columns: 1fr; }
@@ -1554,6 +1552,24 @@
     const heroSlider = document.getElementById('hero-slider');
     heroSlider.addEventListener('mouseenter', stopAuto);
     heroSlider.addEventListener('mouseleave', startAuto);
+
+    // Swipe (touch) control
+    let touchStartX = 0;
+    let touchStartY = 0;
+    heroSlider.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].clientX;
+      touchStartY = e.changedTouches[0].clientY;
+      stopAuto();
+    }, { passive: true });
+    heroSlider.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      const dy = e.changedTouches[0].clientY - touchStartY;
+      const SWIPE_THRESHOLD = 40;
+      if (Math.abs(dx) > SWIPE_THRESHOLD && Math.abs(dx) > Math.abs(dy)) {
+        dx < 0 ? next() : prev();
+      }
+      startAuto();
+    });
 
     startAuto();
 
