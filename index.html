@@ -702,22 +702,44 @@
     }
 
     .stays-amenities {
-      display: flex;
-      flex-wrap: wrap;
-      gap: clamp(1.5rem, 3vw, 3rem);
-      justify-content: center;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: clamp(.7rem, 1.6vw, 1.25rem);
       padding-top: 2.5rem;
       border-top: 1px solid rgba(57,44,35,.12);
     }
     .amenity {
-      display: flex;
-      align-items: center;
-      gap: .6rem;
-      color: rgba(57,44,35,.5);
-      font-size: .8rem;
-      letter-spacing: .06em;
+      position: relative;
+      display: block;
+      aspect-ratio: 3/4;
+      border-radius: 4px;
+      overflow: hidden;
+      background: var(--brown);
     }
-    .amenity svg { flex-shrink: 0; opacity: .6; }
+    .amenity img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .5s ease;
+    }
+    .amenity:hover img { transform: scale(1.07); }
+    .amenity-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(37,28,22,.88) 0%, rgba(37,28,22,.15) 60%, transparent 100%);
+      display: flex;
+      align-items: flex-end;
+      padding: .3rem;
+    }
+    .amenity-overlay span {
+      color: var(--cream);
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .01em;
+      line-height: 1.25;
+      padding: .5rem .4rem .6rem;
+    }
 
     /* ── BANNER CAMISA ───────────────────────────────────── */
     .banner-shirt {
@@ -1002,6 +1024,7 @@
       .products-grid { grid-template-columns: repeat(2, 1fr); }
       .stays-head { grid-template-columns: 1fr; gap: 1rem; }
       .stays-grid { grid-template-columns: repeat(2, 1fr); }
+      .stays-amenities { grid-template-columns: repeat(3, 1fr); }
       .values-grid { grid-template-columns: 1fr; }
       .footer-inner { grid-template-columns: 1fr 1fr; }
     }
@@ -1032,6 +1055,7 @@
       .slider-arrow { display: none; }
       .products-grid { grid-template-columns: 1fr; }
       .stays-grid { grid-template-columns: 1fr; }
+      .stays-amenities { grid-template-columns: repeat(2, 1fr); }
       .footer-inner { grid-template-columns: 1fr; }
       .hero-scroll { display: none; }
     }
@@ -1068,7 +1092,7 @@
 
     <!-- Slide 1 — Hospedagem -->
     <div class="slide active">
-      <img class="slide-img" src="assets/hospedagem-banner.jpg" alt="Casa da Mata — Viveiro Porto Seguro" style="object-position: center 40%;" fetchpriority="high">
+      <img class="slide-img" src="assets/capa-aerea.jpg" alt="Vista aérea da Mata Atlântica — Viveiro Porto Seguro" style="object-position: center 55%;" fetchpriority="high">
       <div class="slide-overlay">
         <div class="hero-text">
           <p class="hero-eyebrow">Ecoturismo · Itatiaia, Rio de Janeiro</p>
@@ -1100,7 +1124,7 @@
 
     <!-- Slide 3 — Hospedagem: Casa do Bosque -->
     <div class="slide">
-      <img class="slide-img" src="https://a0.muscache.com/im/pictures/miso/Hosting-851974584569636323/original/1ccf12fe-1e92-4c72-a83a-6ad11ba315bd.png?im_w=1200&width=1200&quality=80&auto=webp" alt="Casa do Bosque — Viveiro Porto Seguro" style="object-position: center 40%;">
+      <img class="slide-img" src="assets/capa-varanda.jpg" alt="Varanda entre a natureza — Viveiro Porto Seguro" style="object-position: center 35%;">
       <div class="slide-overlay">
         <div class="hero-text">
           <p class="hero-eyebrow">Hospedagem · Casa do Bosque</p>
@@ -1187,10 +1211,10 @@
             <div class="stay-specs">
               <span>4 hóspedes</span><span class="stay-dot">·</span>
               <span>1 quarto</span><span class="stay-dot">·</span>
-              <span>1 cama</span><span class="stay-dot">·</span>
+              <span>3 camas</span><span class="stay-dot">·</span>
               <span>1 banheiro</span>
             </div>
-            <p class="stay-desc">Descanse e curta a natureza com sauna finlandesa à lenha, vista para o Parque Nacional de Itatiaia e acesso a cachoeiras, trilhas e banho de rio.</p>
+            <p class="stay-desc">Descanse e curta a natureza com 1 cama de casal e 2 de solteiro, sauna finlandesa à lenha, vista para o Parque Nacional de Itatiaia e acesso a cachoeiras, trilhas e banho de rio.</p>
             <a href="https://www.airbnb.com.br/rooms/824088130820166473" class="btn-stay" target="_blank" rel="noopener noreferrer">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.14 13.67l-2.94-.916c-.638-.203-.654-.638.136-.946l11.498-4.43c.531-.194.994.131.799.947l.261-.104z"/></svg>
               Ver no Airbnb
@@ -1225,26 +1249,26 @@
 
       <!-- amenities strip -->
       <div class="stays-amenities fade-up">
-        <div class="amenity">
-          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>
-          <span>Parque Nacional de Itatiaia</span>
-        </div>
-        <div class="amenity">
-          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
-          <span>Sauna Finlandesa à Lenha</span>
-        </div>
-        <div class="amenity">
-          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>
-          <span>Piscina de Hidromassagem</span>
-        </div>
-        <div class="amenity">
-          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 16v-2.38C4 11.5 2.97 10.5 3 8c.03-2.72 1.49-6 4.5-6C9.37 2 10 3.8 10 5.5c0 3.11-2 5.66-2 8.68V16a2 2 0 1 1-4 0Z"/><path d="M20 20v-2.38c0-2.12 1.03-3.12 1-5.62-.03-2.72-1.49-6-4.5-6C14.63 6 14 7.8 14 9.5c0 3.11 2 5.66 2 8.68V20a2 2 0 1 0 4 0Z"/><path d="M16 17h4"/><path d="M4 13h4"/></svg>
-          <span>Cachoeiras &amp; Trilhas</span>
-        </div>
-        <div class="amenity">
-          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 2.69 17.66 8.35a8 8 0 1 1-11.31 0z"/></svg>
-          <span>Banho de Rio</span>
-        </div>
+        <a class="amenity" href="#hospedagens">
+          <img src="assets/amenidade-itatiaia.jpg" alt="Parque Nacional de Itatiaia" loading="lazy" decoding="async">
+          <div class="amenity-overlay"><span>Parque Nacional de Itatiaia</span></div>
+        </a>
+        <a class="amenity" href="#hospedagens">
+          <img src="assets/amenidade-sauna.jpg" alt="Sauna finlandesa à lenha" style="object-position: center 65%;" loading="lazy" decoding="async">
+          <div class="amenity-overlay"><span>Sauna Finlandesa à Lenha</span></div>
+        </a>
+        <a class="amenity" href="#hospedagens">
+          <img src="assets/amenidade-piscina.jpg" alt="Piscina de hidromassagem" style="object-position: center 30%;" loading="lazy" decoding="async">
+          <div class="amenity-overlay"><span>Piscina de Hidromassagem</span></div>
+        </a>
+        <a class="amenity" href="#hospedagens">
+          <img src="assets/amenidade-cachoeira.jpg" alt="Cachoeiras e trilhas" loading="lazy" decoding="async">
+          <div class="amenity-overlay"><span>Cachoeiras &amp; Trilhas</span></div>
+        </a>
+        <a class="amenity" href="#hospedagens">
+          <img src="assets/amenidade-rio.jpg" alt="Banho de rio" loading="lazy" decoding="async">
+          <div class="amenity-overlay"><span>Banho de Rio</span></div>
+        </a>
       </div>
 
     </div>
