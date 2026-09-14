@@ -174,6 +174,7 @@
     }
 
     .hero-text { max-width: 560px; }
+    .hero-text-mobile { display: none; }
 
     .hero-eyebrow {
       font-family: var(--font-body);
@@ -1076,6 +1077,8 @@
         pointer-events: auto;
       }
       .slider-arrow { display: none; }
+      .hero-text-desktop { display: none; }
+      .hero-text-mobile { display: block; }
       .products-grid { grid-template-columns: 1fr; }
       .stays-grid { grid-template-columns: 1fr; }
       .stays-amenities { grid-template-columns: 1fr; }
@@ -1116,14 +1119,26 @@
 
     <!-- Slide 1 — Hospedagem -->
     <div class="slide active">
-      <img class="slide-img" src="assets/capa-aerea.jpg" alt="Vista aérea da Mata Atlântica — Viveiro Porto Seguro" style="object-position: center 55%;" fetchpriority="high">
+      <picture>
+        <source media="(max-width: 640px)" srcset="assets/capa-mobile.jpg">
+        <img class="slide-img" src="assets/capa-aerea.jpg" alt="Vista aérea da Mata Atlântica — Viveiro Porto Seguro" style="object-position: center 55%;" fetchpriority="high">
+      </picture>
       <div class="slide-overlay">
-        <div class="hero-text">
+        <div class="hero-text hero-text-desktop">
           <p class="hero-eyebrow">Ecoturismo · Itatiaia, Rio de Janeiro</p>
           <h1 class="hero-title">Desperte<br>entre<br><em>a mata.</em></h1>
           <p class="hero-sub">
             Três hospedagens em meio à Mata Atlântica,<br>
             sauna à lenha, trilhas e silêncio de verdade.
+          </p>
+          <a href="#hospedagens" class="btn-hero">Ver hospedagens</a>
+        </div>
+        <div class="hero-text hero-text-mobile">
+          <p class="hero-eyebrow">Ecoturismo · Itatiaia, Rio de Janeiro</p>
+          <h1 class="hero-title">Reconecte-se<br>com<br><em>a natureza.</em></h1>
+          <p class="hero-sub">
+            Água corrente, mata ao redor e silêncio de verdade —<br>
+            o convite pra desacelerar começa aqui.
           </p>
           <a href="#hospedagens" class="btn-hero">Ver hospedagens</a>
         </div>
@@ -1322,6 +1337,16 @@
 
     </div>
   </section>
+
+  <!-- ── BANNER PARAÍSO ──────────────────────────────────── -->
+  <div class="banner-shirt">
+    <img src="assets/capa-panorama.jpg" alt="Vista panorâmica da Serra da Índia — Viveiro Porto Seguro" loading="lazy" decoding="async">
+    <div class="banner-shirt-content">
+      <p class="section-label">Serra da Índia · Itatiaia, RJ</p>
+      <h2 class="banner-shirt-title">Um pedacinho de<br><strong>paraíso.</strong></h2>
+      <a href="#hospedagens" class="btn-banner">Ver hospedagens</a>
+    </div>
+  </div>
 
   <!-- ── SOBRE ────────────────────────────────────────────── -->
   <section class="about" id="sobre">
