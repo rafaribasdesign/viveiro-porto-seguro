@@ -703,42 +703,64 @@
 
     .stays-amenities {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: clamp(.7rem, 1.6vw, 1.25rem);
-      padding-top: 2.5rem;
+      grid-template-columns: repeat(6, 1fr);
+      gap: clamp(1rem, 1.8vw, 1.5rem);
+      padding-top: 3rem;
       border-top: 1px solid rgba(57,44,35,.12);
     }
     .amenity {
       position: relative;
       display: block;
-      aspect-ratio: 3/4;
-      border-radius: 4px;
+      grid-column: span 2;
+      aspect-ratio: 2/3;
+      border-radius: 6px;
       overflow: hidden;
       background: var(--brown);
+      box-shadow: 0 10px 30px rgba(57,44,35,.15);
     }
+    .amenity:nth-child(4), .amenity:nth-child(5) { grid-column: span 3; }
     .amenity img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform .5s ease;
+      transition: transform .6s ease;
     }
-    .amenity:hover img { transform: scale(1.07); }
+    .amenity:hover img { transform: scale(1.08); }
     .amenity-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(37,28,22,.88) 0%, rgba(37,28,22,.15) 60%, transparent 100%);
+      background: linear-gradient(to top, rgba(37,28,22,.92) 0%, rgba(37,28,22,.25) 55%, transparent 100%);
       display: flex;
-      align-items: flex-end;
-      padding: .3rem;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-start;
+      gap: .8rem;
+      padding: clamp(1rem, 2vw, 1.6rem);
     }
-    .amenity-overlay span {
-      color: var(--cream);
-      font-size: .72rem;
+    .amenity-icon {
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: var(--amber);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--brown);
+      box-shadow: 0 6px 16px rgba(0,0,0,.25);
+      transition: transform .3s ease;
+    }
+    .amenity:hover .amenity-icon { transform: scale(1.1) rotate(-4deg); }
+    .amenity-icon svg { width: 24px; height: 24px; }
+    .amenity-name {
+      font-family: var(--font-head);
+      font-style: italic;
       font-weight: 500;
-      letter-spacing: .01em;
-      line-height: 1.25;
-      padding: .5rem .4rem .6rem;
+      font-size: clamp(1.15rem, 1.8vw, 1.6rem);
+      color: var(--cream);
+      line-height: 1.15;
+      text-shadow: 0 2px 12px rgba(0,0,0,.4);
     }
 
     /* ── BANNER CAMISA ───────────────────────────────────── */
@@ -1024,7 +1046,8 @@
       .products-grid { grid-template-columns: repeat(2, 1fr); }
       .stays-head { grid-template-columns: 1fr; gap: 1rem; }
       .stays-grid { grid-template-columns: repeat(2, 1fr); }
-      .stays-amenities { grid-template-columns: repeat(3, 1fr); }
+      .stays-amenities { grid-template-columns: repeat(2, 1fr); }
+      .amenity, .amenity:nth-child(4), .amenity:nth-child(5) { grid-column: span 1; aspect-ratio: 3/4; }
       .values-grid { grid-template-columns: 1fr; }
       .footer-inner { grid-template-columns: 1fr 1fr; }
     }
@@ -1055,7 +1078,8 @@
       .slider-arrow { display: none; }
       .products-grid { grid-template-columns: 1fr; }
       .stays-grid { grid-template-columns: 1fr; }
-      .stays-amenities { grid-template-columns: repeat(2, 1fr); }
+      .stays-amenities { grid-template-columns: 1fr; }
+      .amenity, .amenity:nth-child(4), .amenity:nth-child(5) { grid-column: span 1; aspect-ratio: 4/3; }
       .footer-inner { grid-template-columns: 1fr; }
       .hero-scroll { display: none; }
     }
@@ -1251,23 +1275,48 @@
       <div class="stays-amenities fade-up">
         <a class="amenity" href="#hospedagens">
           <img src="assets/amenidade-itatiaia.jpg" alt="Parque Nacional de Itatiaia" loading="lazy" decoding="async">
-          <div class="amenity-overlay"><span>Parque Nacional de Itatiaia</span></div>
+          <div class="amenity-overlay">
+            <span class="amenity-icon">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>
+            </span>
+            <span class="amenity-name">Parque Nacional<br>de Itatiaia</span>
+          </div>
         </a>
         <a class="amenity" href="#hospedagens">
           <img src="assets/amenidade-sauna.jpg" alt="Sauna finlandesa à lenha" style="object-position: center 65%;" loading="lazy" decoding="async">
-          <div class="amenity-overlay"><span>Sauna Finlandesa à Lenha</span></div>
+          <div class="amenity-overlay">
+            <span class="amenity-icon">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+            </span>
+            <span class="amenity-name">Sauna Finlandesa<br>à Lenha</span>
+          </div>
         </a>
         <a class="amenity" href="#hospedagens">
           <img src="assets/amenidade-piscina.jpg" alt="Piscina de hidromassagem" style="object-position: center 30%;" loading="lazy" decoding="async">
-          <div class="amenity-overlay"><span>Piscina de Hidromassagem</span></div>
+          <div class="amenity-overlay">
+            <span class="amenity-icon">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>
+            </span>
+            <span class="amenity-name">Piscina de<br>Hidromassagem</span>
+          </div>
         </a>
         <a class="amenity" href="#hospedagens">
           <img src="assets/amenidade-cachoeira.jpg" alt="Cachoeiras e trilhas" loading="lazy" decoding="async">
-          <div class="amenity-overlay"><span>Cachoeiras &amp; Trilhas</span></div>
+          <div class="amenity-overlay">
+            <span class="amenity-icon">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 16v-2.38C4 11.5 2.97 10.5 3 8c.03-2.72 1.49-6 4.5-6C9.37 2 10 3.8 10 5.5c0 3.11-2 5.66-2 8.68V16a2 2 0 1 1-4 0Z"/><path d="M20 20v-2.38c0-2.12 1.03-3.12 1-5.62-.03-2.72-1.49-6-4.5-6C14.63 6 14 7.8 14 9.5c0 3.11 2 5.66 2 8.68V20a2 2 0 1 0 4 0Z"/><path d="M16 17h4"/><path d="M4 13h4"/></svg>
+            </span>
+            <span class="amenity-name">Cachoeiras &amp; Trilhas</span>
+          </div>
         </a>
         <a class="amenity" href="#hospedagens">
           <img src="assets/amenidade-rio.jpg" alt="Banho de rio" loading="lazy" decoding="async">
-          <div class="amenity-overlay"><span>Banho de Rio</span></div>
+          <div class="amenity-overlay">
+            <span class="amenity-icon">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 2.69 17.66 8.35a8 8 0 1 1-11.31 0z"/></svg>
+            </span>
+            <span class="amenity-name">Banho de Rio</span>
+          </div>
         </a>
       </div>
 
