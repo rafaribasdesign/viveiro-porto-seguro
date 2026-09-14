@@ -695,11 +695,14 @@
     }
 
     .stays-amenities {
+      padding-top: 3rem;
+      border-top: 1px solid rgba(57,44,35,.12);
+    }
+    /* Mobile/tablet: grid layout (unchanged experience) */
+    .amenities-track {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
       gap: clamp(1rem, 1.8vw, 1.5rem);
-      padding-top: 3rem;
-      border-top: 1px solid rgba(57,44,35,.12);
     }
     .amenity {
       position: relative;
@@ -712,6 +715,22 @@
       box-shadow: 0 10px 30px rgba(57,44,35,.15);
     }
     .amenity:nth-child(4), .amenity:nth-child(5) { grid-column: span 3; }
+
+    /* Desktop: infinite auto-scrolling carousel, 3 per view */
+    @media (min-width: 901px) {
+      .stays-amenities { overflow: hidden; }
+      .amenities-track {
+        display: flex;
+        grid-template-columns: none;
+        gap: clamp(1rem, 1.8vw, 1.5rem);
+        transition: transform .7s ease;
+      }
+      .amenities-track .amenity {
+        grid-column: unset;
+        flex: 0 0 calc((100% - 2 * clamp(1rem, 1.8vw, 1.5rem)) / 3);
+        aspect-ratio: 2/3;
+      }
+    }
     .amenity img {
       width: 100%;
       height: 100%;
@@ -1039,7 +1058,7 @@
       .products-grid { grid-template-columns: repeat(2, 1fr); }
       .stays-head { grid-template-columns: 1fr; gap: 1rem; }
       .stays-grid { grid-template-columns: repeat(2, 1fr); }
-      .stays-amenities { grid-template-columns: repeat(2, 1fr); }
+      .amenities-track { grid-template-columns: repeat(2, 1fr); }
       .amenity, .amenity:nth-child(4), .amenity:nth-child(5) { grid-column: span 1; aspect-ratio: 3/4; }
       .values-grid { grid-template-columns: 1fr; }
       .footer-inner { grid-template-columns: 1fr 1fr; }
@@ -1075,7 +1094,7 @@
       .slider-dots { bottom: 1.5rem; }
       .products-grid { grid-template-columns: 1fr; }
       .stays-grid { grid-template-columns: 1fr; }
-      .stays-amenities { grid-template-columns: 1fr; }
+      .amenities-track { grid-template-columns: 1fr; }
       .amenity, .amenity:nth-child(4), .amenity:nth-child(5) { grid-column: span 1; aspect-ratio: 4/3; }
       .footer-inner { grid-template-columns: 1fr; }
       .hero-scroll { display: none; }
@@ -1279,6 +1298,7 @@
 
       <!-- amenities strip -->
       <div class="stays-amenities fade-up">
+       <div class="amenities-track" id="amenities-track">
         <a class="amenity" href="#hospedagens">
           <img src="assets/amenidade-itatiaia.jpg" alt="Parque Nacional de Itatiaia" loading="lazy" decoding="async">
           <div class="amenity-overlay">
@@ -1324,6 +1344,7 @@
             <span class="amenity-name">Banho de Rio</span>
           </div>
         </a>
+       </div>
       </div>
 
     </div>
@@ -1727,6 +1748,77 @@
     });
 
     startAuto();
+
+    // ── Comodidades: carrossel infinito (somente desktop) ────
+    (function amenitiesCarousel() {
+      const track = document.getElementById('amenities-track');
+      if (!track) return;
+
+      const isDesktop = () => window.matchMedia('(min-width: 901px)').matches;
+      const VISIBLE = 3;
+      const INTERVAL_MS = 2000;
+
+      const realItems = Array.from(track.children);
+      let clones = [];
+      let index = 0;
+      let timer = null;
+
+      function step() {
+        index++;
+        track.style.transition = 'transform .7s ease';
+        track.style.transform = `translateX(-${index * itemStep()}px)`;
+        if (index === realItems.length) {
+          setTimeout(() => {
+            track.style.transition = 'none';
+            index = 0;
+            track.style.transform = `translateX(0px)`;
+            // Force reflow so the next transition re-applies cleanly
+            void track.offsetWidth;
+          }, 720);
+        }
+      }
+
+      function itemStep() {
+        const first = track.children[0];
+        const gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap || '0');
+        return first.getBoundingClientRect().width + gap;
+      }
+
+      function start() {
+        if (timer) return;
+        clones = realItems.slice(0, VISIBLE).map(el => {
+          const c = el.cloneNode(true);
+          c.setAttribute('aria-hidden', 'true');
+          c.setAttribute('tabindex', '-1');
+          return c;
+        });
+        clones.forEach(c => track.appendChild(c));
+        index = 0;
+        track.style.transform = 'translateX(0px)';
+        timer = setInterval(step, INTERVAL_MS);
+      }
+
+      function stop() {
+        if (!timer) return;
+        clearInterval(timer);
+        timer = null;
+        clones.forEach(c => c.remove());
+        clones = [];
+        index = 0;
+        track.style.transition = 'none';
+        track.style.transform = '';
+      }
+
+      function sync() {
+        if (isDesktop()) start(); else stop();
+      }
+
+      sync();
+      window.addEventListener('resize', () => {
+        clearTimeout(window.__amenitiesResizeT);
+        window.__amenitiesResizeT = setTimeout(sync, 200);
+      });
+    })();
 
     // ── Instagram Feed — imagens estáticas para apresentação ─
     (function renderIGFeed() {
