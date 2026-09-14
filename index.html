@@ -195,14 +195,6 @@
     }
     .hero-title em { font-style: italic; color: var(--amber); }
 
-    .hero-sub {
-      font-size: 1.1rem;
-      font-weight: 300;
-      color: rgba(237,235,220,.9);
-      letter-spacing: .02em;
-      line-height: 1.3;
-      margin-bottom: 2.2rem;
-    }
     .btn-hero {
       display: inline-block;
       background: var(--amber);
@@ -1079,6 +1071,8 @@
       .slider-arrow { display: none; }
       .hero-text-desktop { display: none; }
       .hero-text-mobile { display: block; }
+      .slide-overlay { padding-bottom: 4.75rem; }
+      .slider-dots { bottom: 1.5rem; }
       .products-grid { grid-template-columns: 1fr; }
       .stays-grid { grid-template-columns: 1fr; }
       .stays-amenities { grid-template-columns: 1fr; }
@@ -1127,19 +1121,11 @@
         <div class="hero-text hero-text-desktop">
           <p class="hero-eyebrow">Ecoturismo · Itatiaia, Rio de Janeiro</p>
           <h1 class="hero-title">Desperte<br>entre<br><em>a mata.</em></h1>
-          <p class="hero-sub">
-            Três hospedagens em meio à Mata Atlântica,<br>
-            sauna à lenha, trilhas e silêncio de verdade.
-          </p>
           <a href="#hospedagens" class="btn-hero">Ver hospedagens</a>
         </div>
         <div class="hero-text hero-text-mobile">
           <p class="hero-eyebrow">Ecoturismo · Itatiaia, Rio de Janeiro</p>
           <h1 class="hero-title">Reconecte-se<br>com<br><em>a natureza.</em></h1>
-          <p class="hero-sub">
-            Água corrente, mata ao redor e silêncio de verdade —<br>
-            o convite pra desacelerar começa aqui.
-          </p>
           <a href="#hospedagens" class="btn-hero">Ver hospedagens</a>
         </div>
       </div>
@@ -1152,10 +1138,6 @@
         <div class="hero-text">
           <p class="hero-eyebrow">Chocolate Fino · Sul da Bahia</p>
           <h1 class="hero-title">Intenso<br>como a floresta<br><em>que o criou.</em></h1>
-          <p class="hero-sub">
-            Chocolate Noir 70% cacau, cultivado em sistema<br>
-            agroflorestal no sul da Bahia. Da sombra das árvores<br>para o seu paladar.
-          </p>
           <a href="https://viveiroportoseguro.lojavirtualnuvem.com.br" class="btn-hero" target="_blank" rel="noopener noreferrer">Conhecer</a>
         </div>
       </div>
@@ -1168,10 +1150,18 @@
         <div class="hero-text">
           <p class="hero-eyebrow">Hospedagem · Casa do Bosque</p>
           <h1 class="hero-title">Aconchego<br>entre<br><em>o bosque.</em></h1>
-          <p class="hero-sub">
-            Estúdio para dois, sauna finlandesa à lenha<br>
-            e vista para o Parque Nacional de Itatiaia.
-          </p>
+          <a href="#hospedagens" class="btn-hero">Ver hospedagens</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4 — Paraíso -->
+    <div class="slide">
+      <img class="slide-img" src="assets/capa-panorama.jpg" alt="Vista panorâmica da Serra da Índia — Viveiro Porto Seguro" style="object-position: center 58%;">
+      <div class="slide-overlay">
+        <div class="hero-text">
+          <p class="hero-eyebrow">Serra da Índia · Itatiaia, RJ</p>
+          <h1 class="hero-title">Um pedacinho<br>de <em>paraíso.</em></h1>
           <a href="#hospedagens" class="btn-hero">Ver hospedagens</a>
         </div>
       </div>
@@ -1185,6 +1175,7 @@
       <button class="dot active" data-index="0" aria-label="Slide 1"></button>
       <button class="dot" data-index="1" aria-label="Slide 2"></button>
       <button class="dot" data-index="2" aria-label="Slide 3"></button>
+      <button class="dot" data-index="3" aria-label="Slide 4"></button>
     </div>
 
   </section>
@@ -1337,16 +1328,6 @@
 
     </div>
   </section>
-
-  <!-- ── BANNER PARAÍSO ──────────────────────────────────── -->
-  <div class="banner-shirt">
-    <img src="assets/capa-panorama.jpg" alt="Vista panorâmica da Serra da Índia — Viveiro Porto Seguro" loading="lazy" decoding="async">
-    <div class="banner-shirt-content">
-      <p class="section-label">Serra da Índia · Itatiaia, RJ</p>
-      <h2 class="banner-shirt-title">Um pedacinho de<br><strong>paraíso.</strong></h2>
-      <a href="#hospedagens" class="btn-banner">Ver hospedagens</a>
-    </div>
-  </div>
 
   <!-- ── SOBRE ────────────────────────────────────────────── -->
   <section class="about" id="sobre">
