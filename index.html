@@ -374,6 +374,12 @@
       gap: clamp(1rem, 2.5vw, 2rem);
     }
 
+    @media (min-width: 901px) {
+      .products-grid { grid-template-columns: repeat(6, 1fr); }
+      .products-grid .product-card { grid-column: span 2; }
+      .products-grid .product-card:nth-child(4) { grid-column: 2 / span 2; }
+    }
+
     .product-card {
       background: var(--cream2);
       border-radius: 3px;
@@ -1363,78 +1369,97 @@
 
       <div class="products-grid">
 
-        <!-- Chocolate -->
+        <!-- Chocolate com leite de coco -->
         <div class="product-card fade-up">
           <div class="product-img-wrap">
-            <img src="assets/chocolate.jpg" alt="Chocolate Noir" loading="lazy" decoding="async">
+            <img src="assets/choc-leite-coco.jpg" alt="Chocolate com leite de coco" loading="lazy" decoding="async">
+            <span class="product-tag">Vegano</span>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Chocolates</p>
+            <h3 class="product-name">Chocolate com leite de coco</h3>
+            <p class="product-desc">
+              A cremosidade e a suavidade do leite, sem deixar de ser vegano. Os aromas do cacau fino se desenham com o sabor do coco. Inédito e totalmente tropical.
+            </p>
+            <div class="product-footer">
+              <span class="product-volume">Sem lactose · Vegano</span>
+              <a href="https://viveiroportoseguro.lojavirtualnuvem.com.br/produtos/chocolate-com-cupuacu-80g/" class="btn-card" target="_blank" rel="noopener noreferrer">Comprar</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chocolate Noir 70% -->
+        <div class="product-card fade-up">
+          <div class="product-img-wrap">
+            <img src="assets/choc-noir-70.jpg" alt="Chocolate Noir 70%" loading="lazy" decoding="async">
             <span class="product-tag dark">Fino</span>
           </div>
           <div class="product-info">
             <p class="product-category">Chocolates</p>
-            <h3 class="product-name">Chocolate Noir</h3>
+            <h3 class="product-name">Chocolate Noir 70%</h3>
             <p class="product-desc">
-              Chocolate Noir Fino cultivado no sul da Bahia em sistema agroflorestal. Do cultivo ao Viveiro Porto Seguro, cada barra carrega esse caminho.
+              O puro sabor do cacau, feito de amêndoas finas cultivadas em sistema agroflorestal no sul da Bahia, colhidas e selecionadas à mão.
             </p>
             <div class="product-footer">
-              <span class="product-volume">80g · 70% cacau</span>
-              <a href="https://viveiroportoseguro.lojavirtualnuvem.com.br" class="btn-card" target="_blank" rel="noopener noreferrer">Comprar</a>
+              <span class="product-volume">70% cacau · Vegano</span>
+              <a href="https://viveiroportoseguro.lojavirtualnuvem.com.br/produtos/chocolate-noir-70-rb90q/" class="btn-card" target="_blank" rel="noopener noreferrer">Comprar</a>
             </div>
           </div>
         </div>
 
-        <!-- Mel -->
+        <!-- Chocolate com cupuaçu -->
         <div class="product-card fade-up">
           <div class="product-img-wrap">
-            <img src="assets/mel.jpg" alt="Mel de Florada Silvestre" loading="lazy" decoding="async">
-            <span class="product-tag">Agroecológico</span>
+            <img src="assets/choc-cupuacu.jpg" alt="Chocolate com cupuaçu" loading="lazy" decoding="async">
+            <span class="product-tag">Tropical</span>
           </div>
           <div class="product-info">
-            <p class="product-category">Alimentos</p>
-            <h3 class="product-name">Mel de Florada Silvestre</h3>
+            <p class="product-category">Chocolates</p>
+            <h3 class="product-name">Chocolate com cupuaçu</h3>
             <p class="product-desc">
-              O ciclo completo da natureza em seu estado mais puro. Alimento cru, direto da colmeia para a mesa, mantendo propriedades e sabor autênticos.
+              O sabor do Brasil. O azedinho do cupuaçu equilibra o paladar de forma incrível e original, sobre uma base de cacau fino.
             </p>
             <div class="product-footer">
-              <span class="product-volume">300ml · 430g</span>
-              <span class="btn-card soon">Em breve</span>
+              <span class="product-volume">3 ingredientes · Vegano</span>
+              <a href="https://viveiroportoseguro.lojavirtualnuvem.com.br/produtos/chocolate-com-cupuacu-1k6ly/" class="btn-card" target="_blank" rel="noopener noreferrer">Comprar</a>
             </div>
           </div>
         </div>
 
-        <!-- Ecobag -->
+        <!-- Camiseta Raízes Profundas -->
         <div class="product-card fade-up">
           <div class="product-img-wrap">
-            <img src="assets/ecobag.jpg" alt="Ecobag Viveiro" style="object-position: center 30%;" loading="lazy" decoding="async">
-            <span class="product-tag">Exclusivo</span>
-          </div>
-          <div class="product-info">
-            <p class="product-category">Acessórios</p>
-            <h3 class="product-name">Ecobag "Raíz, Copa e Fruto"</h3>
-            <p class="product-desc">
-              Sacola de algodão com estampa exclusiva do Viveiro Porto Seguro. Arte que representa a flor da Ora-pro-nóbis, símbolo da nossa identidade.
-            </p>
-            <div class="product-footer">
-              <span class="product-volume">Algodão natural</span>
-              <span class="btn-card soon">Em breve</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Camisa -->
-        <div class="product-card fade-up">
-          <div class="product-img-wrap">
-            <img src="assets/camisa.jpg" alt="Camisa Viveiro Porto Seguro" style="object-position: center 10%;" loading="lazy" decoding="async">
+            <img src="assets/camisa.jpg" alt="Camiseta Raízes Profundas" style="object-position: center 10%;" loading="lazy" decoding="async">
             <span class="product-tag dark">Lançamento</span>
           </div>
           <div class="product-info">
             <p class="product-category">Vestuário</p>
-            <h3 class="product-name">Camiseta — Viveiro Porto Seguro</h3>
+            <h3 class="product-name">Camiseta Raízes Profundas</h3>
             <p class="product-desc">
-              Camiseta unissex em algodão pesado, cor terra. Com o logo bordado à frente e a frase "O Futuro Precisa de Raízes Profundas" nas costas.
+              Em malha 100% algodão e estampa de alta qualidade, com uma mensagem em que acreditamos: “O futuro precisa de raízes profundas”. Nos ajude a espalhar o recado!
             </p>
             <div class="product-footer">
-              <span class="product-volume">Tamanhos: P · M · G · GG</span>
-              <span class="btn-card soon">Em breve</span>
+              <span class="product-volume">Tamanho: G</span>
+              <a href="https://viveiroportoseguro.lojavirtualnuvem.com.br/produtos/blusa-raizes-profundas-piiof/" class="btn-card" target="_blank" rel="noopener noreferrer">Comprar</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Barrinha de açaí com banana -->
+        <div class="product-card fade-up">
+          <div class="product-img-wrap">
+            <img src="assets/barrinha-acai.jpg" alt="Barrinha de açaí com banana" loading="lazy" decoding="async">
+            <span class="product-tag">Orgânico</span>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Barrinhas de frutas</p>
+            <h3 class="product-name">Barrinha de açaí com banana</h3>
+            <p class="product-desc">
+              Produto artesanal e com certificação orgânica. Sem conservantes, sem aditivos e sem corantes.
+            </p>
+            <div class="product-footer">
+              <span class="product-volume">Orgânica · Sem conservantes</span>
+              <a href="https://viveiroportoseguro.lojavirtualnuvem.com.br/produtos/barrinha-de-acai-com-banana/" class="btn-card" target="_blank" rel="noopener noreferrer">Comprar</a>
             </div>
           </div>
         </div>
