@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Viveiro Porto Seguro — Raíz, Copa e Fruto</title>
-  <meta name="description" content="Ecoturismo em Itatiaia, RJ: três hospedagens em meio à Mata Atlântica, sauna à lenha e trilhas. Também produzimos chocolate fino e mel agroecológico do sul da Bahia.">
+  <meta name="description" content="Ecoturismo em Itatiaia, RJ: três hospedagens em meio à Mata Atlântica, sauna à lenha e trilhas. Também produzimos chocolates finos do sul da Bahia, barrinhas de frutas e mel agroecológico.">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#9f4913">
   <link rel="canonical" href="https://viveiroportoseguro.com.br/">
@@ -16,13 +16,13 @@
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Viveiro Porto Seguro — Raíz, Copa e Fruto">
-  <meta property="og:description" content="Ecoturismo em Itatiaia, RJ: três hospedagens em meio à Mata Atlântica, sauna à lenha e trilhas. Também produzimos chocolate fino e mel agroecológico do sul da Bahia.">
+  <meta property="og:description" content="Ecoturismo em Itatiaia, RJ: três hospedagens em meio à Mata Atlântica, sauna à lenha e trilhas. Também produzimos chocolates finos do sul da Bahia, barrinhas de frutas e mel agroecológico.">
   <meta property="og:image" content="https://viveiroportoseguro.com.br/assets/hospedagem-banner.jpg">
   <meta property="og:url" content="https://viveiroportoseguro.com.br/">
   <meta property="og:locale" content="pt_BR">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Viveiro Porto Seguro — Raíz, Copa e Fruto">
-  <meta name="twitter:description" content="Ecoturismo em Itatiaia, RJ: três hospedagens em meio à Mata Atlântica, sauna à lenha e trilhas. Também produzimos chocolate fino e mel agroecológico do sul da Bahia.">
+  <meta name="twitter:description" content="Ecoturismo em Itatiaia, RJ: três hospedagens em meio à Mata Atlântica, sauna à lenha e trilhas. Também produzimos chocolates finos do sul da Bahia, barrinhas de frutas e mel agroecológico.">
   <meta name="twitter:image" content="https://viveiroportoseguro.com.br/assets/hospedagem-banner.jpg">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,7 +48,7 @@
       --gap: clamp(1.5rem, 4vw, 3rem);
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 
     body {
       font-family: var(--font-body);
@@ -574,6 +574,9 @@
       font-weight: 500;
       color: var(--cream);
       margin-bottom: .8rem;
+    }
+    @media (min-width: 901px) {
+      .value-title { min-height: 2.5em; line-height: 1.25; }
     }
     .value-quote {
       font-family: var(--font-head);
@@ -1101,6 +1104,11 @@
       .about-visual { order: -1; }
       .about-badge { display: none; }
       .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .products-grid .product-card:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+        justify-self: center;
+        width: calc((100% - clamp(1rem, 2.5vw, 2rem)) / 2);
+      }
       .stays-head { grid-template-columns: 1fr; gap: 1rem; }
       .stays-grid { grid-template-columns: repeat(2, 1fr); }
       .amenities-track { grid-template-columns: repeat(2, 1fr); }
@@ -1108,7 +1116,7 @@
       .values-grid { grid-template-columns: 1fr; }
       .footer-inner { grid-template-columns: 1fr 1fr; }
     }
-    @media (max-width: 640px) {
+    @media (max-width: 860px) {
       .nav-toggle { display: flex; }
       nav {
         display: flex;
@@ -1132,12 +1140,16 @@
         opacity: 1;
         pointer-events: auto;
       }
+    }
+    @media (max-width: 640px) {
       .slider-arrow { display: none; }
+      .values .section-title br { display: none; }
       .hero-text-desktop { display: none; }
       .hero-text-mobile { display: block; }
       .slide-overlay { padding-bottom: 6.75rem; }
       .slider-dots { bottom: 1.5rem; }
       .products-grid { grid-template-columns: 1fr; }
+      .products-grid .product-card:last-child:nth-child(odd) { width: auto; justify-self: stretch; }
       .stays-grid { grid-template-columns: 1fr; }
       .amenities-track { grid-template-columns: 1fr; }
       .amenity, .amenity:nth-child(4), .amenity:nth-child(5) { grid-column: span 1; aspect-ratio: 4/3; }
@@ -1282,7 +1294,7 @@
             </div>
             <p class="stay-desc">Descanse e curta a natureza com sauna finlandesa à lenha, vista para o Parque Nacional de Itatiaia e acesso a cachoeiras, trilhas e banho de rio.</p>
             <a href="https://www.airbnb.com.br/rooms/852870895610040620" class="btn-stay" target="_blank" rel="noopener noreferrer">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.14 13.67l-2.94-.916c-.638-.203-.654-.638.136-.946l11.498-4.43c.531-.194.994.131.799.947l.261-.104z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg>
               Ver no Airbnb
             </a>
           </div>
@@ -1304,7 +1316,7 @@
             </div>
             <p class="stay-desc">Descanse e curta a natureza com 1 cama de casal e 2 de solteiro, sauna finlandesa à lenha, vista para o Parque Nacional de Itatiaia e acesso a cachoeiras, trilhas e banho de rio.</p>
             <a href="https://www.airbnb.com.br/rooms/824088130820166473" class="btn-stay" target="_blank" rel="noopener noreferrer">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.14 13.67l-2.94-.916c-.638-.203-.654-.638.136-.946l11.498-4.43c.531-.194.994.131.799.947l.261-.104z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg>
               Ver no Airbnb
             </a>
           </div>
@@ -1326,7 +1338,7 @@
             </div>
             <p class="stay-desc">Descanse e curta a natureza com sauna finlandesa à lenha, vista para o Parque Nacional de Itatiaia e acesso a cachoeiras, trilhas e banho de rio.</p>
             <a href="https://www.airbnb.com.br/rooms/851974584569636323" class="btn-stay" target="_blank" rel="noopener noreferrer">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.14 13.67l-2.94-.916c-.638-.203-.654-.638.136-.946l11.498-4.43c.531-.194.994.131.799.947l.261-.104z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg>
               Ver no Airbnb
             </a>
           </div>
@@ -1486,7 +1498,7 @@
               O sabor do Brasil. O azedinho do cupuaçu equilibra o paladar de forma incrível e original, sobre uma base de cacau fino.
             </p>
             <div class="product-footer">
-              <span class="product-volume">3 ingredientes · Vegano</span>
+              <span class="product-volume">65% cacau · Vegano</span>
               <a href="https://viveiroportoseguro.lojavirtualnuvem.com.br/produtos/chocolate-com-cupuacu-1k6ly/" class="btn-card" target="_blank" rel="noopener noreferrer">Comprar</a>
             </div>
           </div>
@@ -1524,7 +1536,7 @@
               Produto artesanal e com certificação orgânica. Sem conservantes, sem aditivos e sem corantes.
             </p>
             <div class="product-footer">
-              <span class="product-volume">Orgânica · Sem conservantes</span>
+              <span class="product-volume">Sem conservantes</span>
               <a href="https://viveiroportoseguro.lojavirtualnuvem.com.br/produtos/barrinha-de-acai-com-banana/" class="btn-card" target="_blank" rel="noopener noreferrer">Comprar</a>
             </div>
           </div>
