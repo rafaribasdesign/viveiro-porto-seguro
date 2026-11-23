@@ -510,6 +510,22 @@
       color: var(--cream);
       margin-bottom: .8rem;
     }
+    .value-quote {
+      font-family: var(--font-head);
+      font-style: italic;
+      font-size: 1.05rem;
+      line-height: 1.5;
+      color: var(--amber);
+      margin-bottom: 1rem;
+    }
+    .value-quote-author {
+      display: block;
+      font-style: normal;
+      font-size: .8rem;
+      opacity: .75;
+      margin-top: .4rem;
+    }
+    .value-desc + .value-desc { margin-top: .8rem; }
     .value-desc {
       font-size: .85rem;
       line-height: 1.75;
@@ -1121,24 +1137,12 @@
         <div class="hero-text">
           <p class="hero-eyebrow">Chocolate Fino · Sul da Bahia</p>
           <h1 class="hero-title">Intenso<br>como a floresta<br><em>que o criou.</em></h1>
-          <a href="https://viveiroportoseguro.lojavirtualnuvem.com.br" class="btn-hero" target="_blank" rel="noopener noreferrer">Conhecer</a>
+          <a href="#produtos" class="btn-hero">Conhecer</a>
         </div>
       </div>
     </div>
 
-    <!-- Slide 3 — Hospedagem: Casa do Bosque -->
-    <div class="slide">
-      <img class="slide-img" src="assets/capa-varanda.jpg" alt="Varanda entre a natureza — Viveiro Porto Seguro" style="object-position: center 35%;">
-      <div class="slide-overlay">
-        <div class="hero-text">
-          <p class="hero-eyebrow">Hospedagem · Casa do Bosque</p>
-          <h1 class="hero-title">Aconchego<br>entre<br><em>o bosque.</em></h1>
-          <a href="#hospedagens" class="btn-hero">Ver hospedagens</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Slide 4 — Paraíso -->
+    <!-- Slide 3 — Paraíso -->
     <div class="slide">
       <img class="slide-img" src="assets/capa-panorama.jpg" alt="Vista panorâmica da Serra da Índia — Viveiro Porto Seguro" style="object-position: center 58%;">
       <div class="slide-overlay">
@@ -1146,6 +1150,18 @@
           <p class="hero-eyebrow">Serra da Índia · Itatiaia, RJ</p>
           <h1 class="hero-title">Um pedacinho<br>de <em>paraíso.</em></h1>
           <a href="#hospedagens" class="btn-hero">Ver hospedagens</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4 — Produtos (imagem provisória: trocar pela foto geral dos produtos) -->
+    <div class="slide">
+      <img class="slide-img" src="assets/mel.jpg" alt="Produtos do Viveiro Porto Seguro" style="object-position: center;">
+      <div class="slide-overlay">
+        <div class="hero-text">
+          <p class="hero-eyebrow">Produtos · Da floresta para sua casa</p>
+          <h1 class="hero-title">O sabor<br>da <em>agrofloresta.</em></h1>
+          <a href="#produtos" class="btn-hero">Ver produtos</a>
         </div>
       </div>
     </div>
@@ -1182,7 +1198,6 @@
         <div class="stay-card fade-up">
           <div class="stay-img-wrap">
             <img src="https://a0.muscache.com/im/pictures/miso/Hosting-852870895610040620/original/67537b59-c688-4999-9563-e8238c0bbc9b.jpeg?im_w=720&width=720&quality=70&auto=webp" alt="Casa da Mata" loading="lazy" decoding="async">
-            <span class="stay-badge">Casa inteira</span>
           </div>
           <div class="stay-info">
             <p class="stay-location">Itatiaia, Rio de Janeiro</p>
@@ -1205,7 +1220,6 @@
         <div class="stay-card fade-up">
           <div class="stay-img-wrap">
             <img src="https://a0.muscache.com/im/pictures/miso/Hosting-824088130820166473/original/0db9f744-8072-47fe-8213-f7a50b01cfd4.jpeg?im_w=720&width=720&quality=70&auto=webp" alt="Casinha do Vale" loading="lazy" decoding="async">
-            <span class="stay-badge">Casa de campo</span>
           </div>
           <div class="stay-info">
             <p class="stay-location">Itatiaia, Rio de Janeiro</p>
@@ -1228,7 +1242,6 @@
         <div class="stay-card fade-up">
           <div class="stay-img-wrap">
             <img src="https://a0.muscache.com/im/pictures/miso/Hosting-851974584569636323/original/1ccf12fe-1e92-4c72-a83a-6ad11ba315bd.png?im_w=720&width=720&quality=70&auto=webp" alt="Casa do Bosque" loading="lazy" decoding="async">
-            <span class="stay-badge">Estúdio</span>
           </div>
           <div class="stay-info">
             <p class="stay-location">Itatiaia, Rio de Janeiro</p>
@@ -1420,7 +1433,7 @@
               Camiseta unissex em algodão pesado, cor terra. Com o logo bordado à frente e a frase "O Futuro Precisa de Raízes Profundas" nas costas.
             </p>
             <div class="product-footer">
-              <span class="product-volume">P · M · G · GG</span>
+              <span class="product-volume">Tamanhos: P · M · G · GG</span>
               <span class="btn-card soon">Em breve</span>
             </div>
           </div>
@@ -1439,23 +1452,29 @@
       <div class="values-grid">
         <div class="value-card fade-up">
           <div class="value-num">01</div>
-          <h3 class="value-title">Agroecologia</h3>
+          <h3 class="value-title">Agrofloresta</h3>
+          <p class="value-quote">Semeamos sistemas, plantamos árvores.<br>Cultivamos jardins, colhemos abundância.</p>
           <p class="value-desc">
-            Cultivamos em sistema agroflorestal, onde a biodiversidade é a nossa maior ferramenta. Sem agrotóxicos, sem monocultura — apenas o equilíbrio entre espécies que a natureza já sabe organizar.
+            Trabalhamos com sistemas agroflorestais sucessionais, onde a biodiversidade é a nossa maior ferramenta. Observação e estudo para regenerar as terras degradadas da Mata Atlântica.
           </p>
         </div>
         <div class="value-card fade-up">
           <div class="value-num">02</div>
-          <h3 class="value-title">Origem Rastreável</h3>
+          <h3 class="value-title">Trabalho em rede e Origem rastreável</h3>
+          <p class="value-quote">A força da teia da aranha consiste em sua própria trama.</p>
           <p class="value-desc">
-            Cada produto nasce em Porto Seguro, Bahia, e chega a você com histórico completo de cultivo. Do solo à embalagem, sabemos exatamente o que você está consumindo — e nos orgulhamos de cada etapa.
+            Buscamos cada vez mais conhecer e fortalecer cada integrante envolvido em todo o processo. Da roça até você.
           </p>
         </div>
         <div class="value-card fade-up">
           <div class="value-num">03</div>
-          <h3 class="value-title">Sem Crueldade</h3>
+          <h3 class="value-title">Permacultura e Agroecologia</h3>
+          <p class="value-quote">“Quando se sonha sozinho é apenas um sonho. Quando se sonha juntos, é o começo da realidade.”<span class="value-quote-author">— Cervantes</span></p>
           <p class="value-desc">
-            Todos os nossos cosméticos são veganos e cruelty-free. Acreditamos que cuidar de si mesmo não deve custar o bem-estar de outros seres. A natureza oferece tudo que precisamos sem violência.
+            Levamos as delícias da floresta para sua casa e te recebemos em nosso espaço para restaurar as energias.
+          </p>
+          <p class="value-desc">
+            Acreditamos que o contato com o natural é imprescindível para a vida humana. Trabalhamos para tornar isso cada vez mais frequente.
           </p>
         </div>
       </div>
@@ -1463,7 +1482,7 @@
   </section>
 
   <!-- ── INSTAGRAM ────────────────────────────────────────── -->
-  <section class="instagram">
+  <section class="instagram" id="redes-sociais">
     <div class="container">
       <div class="insta-head fade-up">
         <p class="section-label" style="text-align:center;">Redes Sociais</p>
@@ -1530,21 +1549,22 @@
         </p>
       </div>
       <div class="footer-col">
-        <h4>Produtos</h4>
+        <h4>Institucional</h4>
         <ul>
-          <li><a href="#produtos">Chocolate Noir</a></li>
-          <li><a href="#produtos">Mel de Florada Silvestre</a></li>
-          <li><a href="#produtos">Ecobag</a></li>
-          <li><a href="#produtos">Camiseta</a></li>
+          <li><a href="#hospedagens">Hospedagem</a></li>
+          <li><a href="#sobre">Nossa história</a></li>
+          <li><a href="#valores">Agroecologia</a></li>
+          <li><a href="#redes-sociais">Redes Sociais</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Institucional</h4>
+        <h4>Produtos</h4>
         <ul>
-          <li><a href="#sobre">Nossa história</a></li>
-          <li><a href="#valores">Agroecologia</a></li>
-          <li><a href="#valores">Certificações</a></li>
-          <li><a href="#contato">Contato</a></li>
+          <li><a href="#produtos">Chocolates</a></li>
+          <li><a href="https://viveiroportoseguro.lojavirtualnuvem.com.br" target="_blank" rel="noopener noreferrer">Barrinhas de frutas</a></li>
+          <li><a href="https://viveiroportoseguro.lojavirtualnuvem.com.br" target="_blank" rel="noopener noreferrer">Molho de pimenta</a></li>
+          <li><a href="#produtos">Camiseta</a></li>
+          <li><a href="https://viveiroportoseguro.lojavirtualnuvem.com.br" target="_blank" rel="noopener noreferrer">+ Mais</a></li>
         </ul>
       </div>
       <div class="footer-col">
