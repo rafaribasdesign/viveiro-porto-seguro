@@ -251,29 +251,6 @@
       opacity: 0;
       animation: heroScrollIn 1.2s ease 1s forwards;
     }
-    .hero-scroll-label {
-      font-size: .78rem;
-      font-weight: 500;
-      letter-spacing: .35em;
-      padding-left: .35em; /* compensa o espaçamento para centralizar */
-      text-transform: uppercase;
-    }
-    .hero-scroll-line {
-      position: relative;
-      width: 2px;
-      height: 46px;
-      border-radius: 2px;
-      background: rgba(237,235,220,.35);
-      overflow: hidden;
-    }
-    .hero-scroll-line::after {
-      content: "";
-      position: absolute;
-      left: 0; top: 0;
-      width: 2px; height: 50%;
-      background: var(--amber);
-      animation: heroScrollFlow 2.2s cubic-bezier(.65,0,.35,1) infinite;
-    }
     .hero-scroll-circle {
       position: relative;
       width: 48px; height: 48px;
@@ -303,10 +280,6 @@
       color: var(--brown);
     }
     @keyframes heroScrollIn { to { opacity: 1; } }
-    @keyframes heroScrollFlow {
-      0%   { transform: translateY(-100%); }
-      100% { transform: translateY(200%); }
-    }
     @keyframes heroScrollBob {
       0%, 100% { transform: translateY(-2px); }
       50%      { transform: translateY(4px); }
@@ -317,7 +290,7 @@
     }
     @media (prefers-reduced-motion: reduce) {
       .hero-scroll { animation: none; opacity: 1; }
-      .hero-scroll-line::after, .hero-scroll svg, .hero-scroll-circle::before { animation: none; }
+      .hero-scroll svg, .hero-scroll-circle::before { animation: none; }
     }
 
     .slider-dots {
@@ -1162,7 +1135,7 @@
       .slider-arrow { display: none; }
       .hero-text-desktop { display: none; }
       .hero-text-mobile { display: block; }
-      .slide-overlay { padding-bottom: 8.5rem; }
+      .slide-overlay { padding-bottom: 6.75rem; }
       .slider-dots { bottom: 1.5rem; }
       .products-grid { grid-template-columns: 1fr; }
       .stays-grid { grid-template-columns: 1fr; }
@@ -1170,7 +1143,6 @@
       .amenity, .amenity:nth-child(4), .amenity:nth-child(5) { grid-column: span 1; aspect-ratio: 4/3; }
       .footer-inner { grid-template-columns: 1fr; }
       .hero-scroll { bottom: 3rem; gap: .6rem; }
-      .hero-scroll-line { display: none; }
       .hero-scroll-circle { width: 42px; height: 42px; }
     }
 
@@ -1265,8 +1237,6 @@
     <button class="slider-arrow next" aria-label="Próximo">&#8594;</button>
 
     <a href="#hospedagens" class="hero-scroll" aria-label="Rolar para baixo">
-      <span class="hero-scroll-label">Role</span>
-      <span class="hero-scroll-line"></span>
       <span class="hero-scroll-circle">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       </span>
